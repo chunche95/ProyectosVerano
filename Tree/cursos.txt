@@ -1,0 +1,33 @@
+Laravel
+Symfony
+APIs
+NodeJS
+Express
+Alma Linux
+NIX OS
+Azure DevOps - Pipelines
+Python
+Django
+Flask
+Machine Learning
+MySQL
+MongoDB
+NGINX
+Apache
+SSL Encryption
+Docker
+MS Project
+Scrum Fundamentals
+Git
+GitHub
+Java8
+C Programming
+PHP
+Flowcharts
+UX Design
+JavaScript
+React
+Angular
+Vue
+Ruby on Rails
+Phoenix
