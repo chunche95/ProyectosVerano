@@ -1,6 +1,3 @@
-### README.md
-
-```markdown
 # Summer Projects Repository
 
 This repository showcases my learning journey and the projects I've worked on over the summer. Throughout this period, I have delved into a variety of technologies and tools, honing my skills across different programming languages, frameworks, and development environments. Here is an overview of what I've covered:
@@ -140,6 +137,3 @@ Under the following terms:
 - **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
 For more details, visit [Creative Commons](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-```
-
-This README and script should provide a solid foundation for your project repository, making it easier to organize, navigate, and expand in the future.
