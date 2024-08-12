@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Ejercicio_recursividad
+comment0.text=\r\n\ Ejercicio\ para\ calcular\ la\ multiplicaci\u00F3n\ y\ media\ con\ Divide\ y\ Vencer\u00E1s.\r\n\ \r\n\ @author\ Pauchino09.\r\n\ @version\ 0.0\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=inicio\ fin\ array
+comment2.target=int\ multiplicarArrayDyV(int,\ int,\ int[])
+comment3.params=inicio\ fin\ array
+comment3.target=float\ mediaArrayDyV(int,\ int,\ int[])
+numComments=4

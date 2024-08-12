@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Ejercicio_Recursividad_Arrays
+comment0.text=\r\n\ Teniendo\ dos\ array,\ comprobamos\ con\ divide\ y\ venceras\ si\ los\ dos\ arrays\ son\ iguales.\r\n\ \r\n\ @author\ pauchino09\ \r\n\ @version\ 0.0\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=inicio\ fin\ arr1\ arr2
+comment2.target=int\ arraysIguales(int,\ int,\ int[],\ int[])
+comment2.text=Ver\ en\ que\ posicion\ 'falla'\ o\ si\ todo\ est\u00E1\ OK
+numComments=3

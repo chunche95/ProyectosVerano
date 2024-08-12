@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ejercicio_recursividad_min_y_max
+comment0.text=\r\n\ Calculo\ m\u00EDnimo\ y\ m\u00E1ximo\ con\ divide\ y\ vencer\u00E1s..\r\n\ \r\n\ @author\ Pauchino09\r\n\ @version\ 0.0\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=inicio\ fin\ arr
+comment2.target=int\ minimo(int,\ int,\ int[])
+comment3.params=inicio\ fin\ arr
+comment3.target=int\ maximo(int,\ int,\ int[])
+comment4.params=inicio\ fin\ arr
+comment4.target=int[]\ min_max(int,\ int,\ int[])
+numComments=5
