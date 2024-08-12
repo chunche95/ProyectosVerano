@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Nodo
+comment0.text=\r\n\ Estructuras\ din\u00E1micas\ en\ Java.\r\n\ \r\n\ @author\ Pauchino09.\r\n\ @version\ 1.0\r\n
+comment1.params=elemento\ siguiente
+comment1.target=Nodo(java.lang.Object,\ Nodo)
+comment2.params=
+comment2.target=java.lang.Object\ getElmento()
+comment3.params=elemento
+comment3.target=void\ setElemento(java.lang.Object)
+comment4.params=
+comment4.target=Nodo\ getSiguiente()
+comment5.params=siguiente
+comment5.target=void\ setSiguiente(Nodo)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7
