@@ -172,7 +172,6 @@ framework_map = {
     'ReactiveObjC': 'objective-c',
     'UIKit': 'objective-c',
     'Foundation': 'objective-c',
-
     # Add more frameworks and languages as needed
 }
 
