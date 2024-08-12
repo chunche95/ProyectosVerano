@@ -1,0 +1,703 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Resumen de C.</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../main.css" />
+		<link rel="shortcut icon" href="../images/logo.jpg" type="image/x-icon">
+	</head>
+	<body class="single is-preload">
+    	<div id="wrapper">
+			<!-- Header -->
+					<header id="header">
+						<h1><a href="../index.html">Indice</a></h1>
+					</header>
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">Resumen de contenidos de C.</a></h2>
+                                    
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2019-09-02">Septiembre, 02, 2019</time>
+										<a href="https://github.com/chunche95" class="author"><span class="name">Chunche95</span><img src="../images/avatar.jpg" alt="" /></a>
+									</div>
+								</header>
+								<p>
+                                    <strong>C:</strong> Es un lenguaje de programación imperativo, además de tener la característica de ser un lenguaje procedimental. <br>
+                                    <h3>Antes de nada:</h3>
+                                    <p>
+                                        Instrucciones:
+                                        <ul>
+                                            <li>
+                                                <b>Asignación:</b> Guarda un valor en la memoria temporal.
+                                            </li>
+                                            <li>
+                                                <b>Condicionales:</b> A partir de una condición ejecuta uas instrucciones o no.
+                                            </li>
+                                            <li>
+                                                <b>Bucles:</b> El programa repite uan serie de instrucciones un número de veces o hasta que una condición se cumpla.
+                                            </li>
+                                            <li>
+                                                <b>Llamadas:</b> Una función invoca a otra función. El flujo de instrucciones pasa a otra zona del código.
+                                            </li>
+                                        </ul>
+                                    </p>
+                                    <h2>Funciones.</h2>
+                                    <p>
+                                        Conjunto de instrucciones que hace una operación. Tiene entradas y salidas. <br>
+                                        IMPORTANTE: La función más importante <b>main()</b>: Las instrucciones, funciones y procedimientos dentro de la función <b>main()</b> son la función que 
+                                        el compilador buscará para ejecutar el programa creado.
+                                            <code><pre>
+#include &lt;stdio.h&gt; /* Archivo de cabecera para cargar la definición de 'printf()'. */
+int main(){
+    printf("Hola chunche95!");
+    return 0;
+}
+                                            </code></pre>
+                                    </p>
+                                    <h2>Tipos</h2>
+                                    <p>
+                                        <h3>Int - Tipos de enteros.</h3>
+                                        <table>
+                                            <tr>
+                                                <td>short</td>
+                                                <td>16 bits</td>
+                                            </tr>
+                                            <tr>
+                                                <td>int</td>
+                                                <td>32 bits</td>
+                                            </tr>
+                                            <tr>
+                                                <td>long</td>
+                                                <td>64 bits</td>
+                                            </tr>
+                                            <tr>
+                                                <td>unsigned</td>
+                                                <td>Variable sin signo</td>
+                                            </tr>
+                                        </table>
+                                        Otros tipos de datos definidos son:
+                                        <ul>
+                                            <li>char - Para los de tipo carácter.</li>
+                                        </ul>
+                                        <ul>
+                                            <li>float - Son números con coma flotante, es decir, los decimales, se indican con el símbolo '.' para indicar su 'coma flotante'. </li>
+                                        </ul>
+                                        <ul>
+                                            <li>string - Indican cadenas de caracteres. </li>
+                                        </ul>
+                                        <ul>
+                                            <li>
+                                                Procedimiento: Ejecuta código. <br>
+                                                <b>void</b> Se ejecuta sin devolver  valor.
+                                            </li>
+                                        </ul>
+                                            <pre><code>
+#include &lt;stdio.h&gt;
+int main(){
+    /* Declaración de las variables */
+    char x;
+    int y;
+    /* Asignación de valores a las variables definidas */
+    x='c'; /* Al ser de tipo char se indican con comillas simples. */
+    y=20;
+    /* Definición de variable 'z' y expresión que realiza dicha variable */
+    int z= y*2;
+    
+    /* ******************************************** */
+    /* RESULTADOS                                   */
+    /* ******************************************** */
+    printf("Hola %c , su número es: %d .", x,y); // Imprime 'Hola c, su número es: 20 .'
+    return 0;
+}
+                                            </code></pre>
+                                    </p>
+                                    <h2>Procedimiento void.</h2>
+                                    <p>
+                                        Ejemplo:
+                                        <pre><code>
+#include &lt;stdio.h&gt;
+
+/* Procedimiento  imprimir_datos() */
+void imprimir_datos(int edad, char* nombre){
+    printf("Hola %s , tiene %d",nombre,edad);
+}
+/* Funcion principal */
+int main(){
+    imprimir_datos(20,"Pepe");
+    return 0;
+}
+                                        </code></pre>
+                                    </p>
+                                    <h2>Condicionales y operadores lógicos.</h2>
+                                    <p>
+                                        <h3>Condicionales.</h3>
+                                        <p>
+                                            Tenemos dos tipos: 
+                                            <ul>
+                                                <strong>if-else o el if-else if-else</strong>. Para condicionales simples
+                                            </ul>
+                                            <ul>
+                                                <strong>switch-case</strong>. Para condicionales con varias condiciones.
+                                            </ul>
+                                        </p>
+                                        <h3>Operadores lógicos.</h3>
+                                        <table>
+                                            <tr>
+                                                <td>&&</td>
+                                                <td>'Y'</td>
+                                            </tr>
+                                            <tr>
+                                                <td>||</td>
+                                                <td>'Ó'</td>
+                                            </tr>
+                                            <tr>
+                                                <td>()</td>
+                                                <td>Crear expresiones</td>
+                                            </tr>
+                                            <tr>
+                                                <td>!</td>
+                                                <td>Negación de una expresión o valor - Significaría un 'falso' o el inverso de un valor.</td>
+                                            </tr>
+                                        </table>
+                                    </p>
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+int main(){
+    int numero=20;
+    if(numero==10){
+        printf("El número es: %d", numero);
+    }else if( numero == 20){
+        printf("El número es: %d", numero);
+    }else{
+        printf("El número es: %d", numero);
+    }
+    return 0;
+}
+                                    </code></pre>
+                                Ejemplo de switch-case:
+                                <pre><code>
+#include &lt;stdio.h&gt;
+
+void imprimir_datos(int numero_dia){
+    switch(numero_dia){
+        case 1: printf("Lunes"); break;
+        case 2: printf("Martes"); break;
+        case 3: printf("Miercoles"); break;
+        case 4: printf("Jueves"); break;
+        case 5: printf("Viernes"); break;
+        case 6: printf("Sabado"); break;
+        case 7: printf("Domingo"); break;
+        default: printf("Valor inválido! \n"); break;
+    }
+}
+
+int main(){
+    imprimir_dia(2); // Valor asignado a Martes
+    return 0;
+}
+                                </code></pre>
+                            <!--------------------------------------------------------------------------------------->
+                                </p>
+                                <h2>Bucles</h2>
+                                <p>
+                                    Tenemos los bucles:
+                                    <ul>
+                                        <li>while</li>
+                                        <li>do-while</li>
+                                        <li>for</li>
+                                    </ul>
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+int main(){
+    int k = 10;
+    while ( k < 20 ){
+        printf("k vale %d \n",k);
+        k++;
+    }
+    printf("Salimos del bucle.");
+    return 0;
+}
+                                    </code></pre>
+                                    do-while &rarr; la condición se ejecuta al final. Primero ejecuta las sentencias dentro del 'do'. 
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+int main(){
+    int k = 10;
+    do{
+        printf("k vale: %d ", k);
+        k++;
+    }while(k < 20);
+    printf("Salimos del bucle.");
+    return 0;
+}                                        
+                                    </code></pre>
+                                    La diferencia entre <b>while</b> y <strong>do-while</strong> es que la condición del primer bucle es determinante 
+                                    se realizará la ejecución del código sólo si se da una condición idónea. En el caso del segundo bucle, do-while, siempre tendremos 
+                                    una primera ejecución del código que tenemos dentro de las llaves. <br>
+                                    Ejemplo:
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+
+// While
+void probarBucleWhile(){
+    int k = 20;
+    printf("- Inicio \n");
+    while(k < 20 ){ //ESTA CONDICION NUNCA ES VERDAD
+        printf("- Iteración del bucle while. \n");
+    }
+    printf(" - Fin \n");
+}
+
+// Do-While
+void probarBucleDoWhile(){
+    int j=20;
+    printf("- Inicio \n");
+    do{
+        printf("- Iteraición del bucle do-while \n");
+    }while(j < 20); //ESTA CONDICION NUNCA ES VERDAD
+    printf("- Fin \n");
+}
+
+int main(){
+    printf("While");
+    probarBucleWhile();
+    printf("Do-While");
+    probarBucleDoWhile();
+    printf("Salimos del programa.");
+    return 0;                                        
+}
+                                    </code></pre>
+                                    Por último, tenemos el bucle for que se caracteriza por tener la siguiente estructura:
+                                    <blockquote>
+                                        for (inicialización; condición; Iteración){ /* Código */ }
+                                    </blockquote>
+                                    La parte del código se ejecuta sólo si se realizan los siguientes pasos:
+                                    <ul>
+                                        <li>Ejecutar "inicialización"</li>
+                                        <li>Evaluar "condición". Si no se cumple &rarr; Fin.</li>
+                                        <li>Ejecutar el código del bucle.</li>
+                                        <li>Ejecutar "iteración".</li>
+                                        <li>Volver al paso 2.</li>
+                                    </ul>
+                                    Ejemplo: 
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+
+int main(){
+    int i;
+    for( i=0; i < 5 ; i++){
+        printf("Vuelta: %d \n", i);
+    }
+    printf("Salimos del bucle");
+    return 0;
+}
+                                    </code></pre>
+                                </p>
+                                <h2>Punteros.</h2>
+                                <p>
+                                    Cuando almacenamos en memoria una variable, la celda de la memoria, necesitaremos saber  la dirección de esa posición de variable. 
+                                    Los punteros nos ayudan a recuperar el número de celda y escribir sobre ella. <br>
+                                    Para crear un puntero debemos indicar el tipo de dato seguido de un '*' y el nombre del puntero y asignacion de la direccion de memoria de 'x' con '&x'.
+                                    Ejemplo: 
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+int main(){
+    int x = 10;
+    prinf("x = %d \n", x);
+
+    int* dirX = &x; // Creamos un puntero con el valor de la variable de 'x'.
+    
+    /* Para indicar la posición en memoria de la variable 'x' tenemos que: */
+    printf("Dirección de memoria de x = %u \n", &x); // Placeolder de direccion de la variable 'x'.
+
+    // Con los de tipo float sería:
+    float y=0.5;
+    float* dirY = &y;
+}                 
+                                    </code></pre>
+                                    Usos de punteros:
+                                    <ul>
+                                        Trabajar con referencias en funciones. 
+                                    </ul>
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+void jugar(int n){
+    n=(n+3)*2-1;
+    printf("%d\n",n); // Opera con la copia de la variable 'n'. 25
+}
+int main(){
+    int x=10;
+    jugar(x);
+    printf("%d\n",x); // Imprime la variable x con su valor original. 10
+    return 0;
+}
+                                    </code></pre>
+                                   <i><b> Trabajando con direcciones de memoria.</b></i>
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+void jugar(int* n){
+    int y = *n; // Recupera el valor del puntero, y=10.
+    y=(y+2)/2+2-(3*y);
+    // printf("%d\n",y); // Opera con la copia de la variable 'y'. -22
+    *n=y; 
+}
+int main(){
+    int x=10;
+    jugar(&x);
+    printf("%d\n",x); // Modifica el valor de la direccion de memoria 
+                      // donde estaba ubicada la 'x'.
+    return 0;
+}                                        
+                                    </code></pre>
+                                </p>
+                                <h2>Arrays y VLAs</h2>
+                                <p>
+                                    Estructurar datos, forma de organizar datos en formas contiguas de memorias.
+                                <pre><code>
+#include &lt;stdio.h&gt;
+int main(){
+    int edades[10]; // Array de 10 posiciones contiguas.
+    edades[2]=15;
+    int edadesTotales=edades[2] + edades[3];
+}
+                                </code></pre>
+                                Si los espacios de memoria han sido usados, los valores que había en estas posiciones de memoria como 
+                                resultado de algún programa ejecutado antes en la máquina. <strong>C no va a limpiar la memoria antes 
+                                de usarla.</strong> <br>
+                                Para ello inicializamos las variables con los <i>inline initialization.</i>
+                                <pre><code>
+#include &lt;stdio.h&gt;                                    
+int main(){
+    int edades[8]={1,2,3,4,5,2,2,9};
+}
+                                </code></pre>
+                                Ejemplo con bucles.
+                                <pre><code>
+#include &lt;stdio.h&gt;                                    
+int main(){
+    itn i, edades[8];
+    for ( i=0; i < 8; i++){
+        printf("Introduzca la edad %d ", i+1);
+        scanf("%d", &edades[i]);
+    } 
+    for ( i = 0 ; i < 8 ; i++ ){
+        pritnf("Edades[%d] = %d \n", i, edades[i]);
+    }
+    return 0;
+}
+                                </code></pre>
+                                El uso de las VLAs se encargan de la asignación de las variables y el usuario las define. 
+                                <pre><code>
+#include &lt;stdio.h&gt;                                    
+
+int main(){
+    int tam;
+    printf("¿Cuántas edades vas a registrar? ");
+    scanf("%d", &tam);
+
+    int i,edades[tam];
+
+    for ( i=0; i < tam ; i++){
+        printf("Introduzca la edad %d: ", i+1);
+        scanf("%d", &edades[i]);
+    }
+
+    for ( i=0; i < tam; i++){
+        printf("Edades[%d] = %d \n", i , edades(i));
+    }
+    retunrn 0;
+}
+                                </code></pre>
+                                La similitud de los VLAs y de los punteros es la siguiente:  <br>
+                                Los punteros son espacios de memoria que guardan el valor de una variable en dicho espacio, los VLA's son 
+                                definición de variables de una lista que usan un espacio en memoria del ordenador, todos estos valores van 
+                                encadenador. Ver imagen inferior. <br>
+                                <img src="../images/arrays&punteros(similitudes).PNG" alt="similitudes entre array y punteros">
+                                <br>
+                                <img src="../images/array4.PNG" alt="array de 4 bits">
+                                <br>
+                                Cuando usamos una función aparte, la declaración del array se hace de manera distinta. Para ello, primero definimos el array,
+                                sin decirle el tamaño dentro de los corchetes, seguidamente, tendremos una variable auxiliar que indica el tamaño del array. Ejemplo: 
+                                <pre><code>
+&lt;stdio.h&gt; 
+
+float media(<strong>int* edades</strong>, int <strong>tamano</strong>){
+    int i; 
+    float vuelta = 0; 
+    for ( i = 0 ; i < tamano ; i++ ){
+        vuelta += edades[i];
+    }
+    return vuelta/tamano;
+}
+
+int main(){
+    int tam;
+    printf("¿Cuántas edades vas a registrar? ");
+    scanf("%d", &tam);
+
+    int i,edades[tam];
+
+    for ( i=0; i < tam ; i++){
+        printf("Introduzca la edad %d: ", i+1);
+        scanf("%d", &edades[i]);
+    }
+
+    for ( i=0; i < tam; i++){
+        printf("Edades[%d] = %d \n", i , edades(i));
+    }
+    retunrn 0;
+}
+                                </code></pre>
+                                </p>
+                                <h2>Estructuras.</h2>
+                                <p>
+                                    Estructuras sirven para agrupar datos del mismo tipo bajo un mismo identificador.
+                                    <pre><code>
+#include &lt;stdio.h&gt; 
+#include &lt;string.h&gt;
+
+// Declaracion de la estructura.
+<strong>struct</strong> cuenta{
+    //variables
+    char nombre[30];
+    char apellidos[40];
+    int identificador;
+    int saldo;
+}<strong>;</strong>
+
+void imprimir_datos(struct cuenta c){
+    printf("El cliente %s %s tiene %d euros en la cuenta.\n",
+    c.nombre,c.apellido,c.saldo);
+}
+
+int main(){
+    <strong>struct cuenta c1;</strong>
+    // Definición de mi cuenta c1.
+    strcpy(c1.nombre,"Juan");
+    strcpy(c1.apellido, "Sanchez");
+    c1.identificador=123;
+    c1.saldo=400;
+
+    //Imprimimos los datos de cuenta
+    imprimir_datos(c1);
+    return 0;
+}
+                                    </code></pre>
+                                    El mismo ejemplo usando punteros.
+                                    <pre><code>
+#include &lt;stdio.h&gt; 
+#include &lt;string.h&gt;
+
+// Declaracion de la estructura.
+struct cuenta{
+    //variables
+    char nombre[30];
+    char apellidos[40];
+    int identificador;
+    int saldo;
+};
+
+void imprimir_datos(struct cuenta <strong>*c</strong> ){
+    printf("El cliente %s %s tiene %d euros en la cuenta.\n",
+    c<strong>-></strong>nombre,c<strong>-></strong>apellido,c<strong>-></strong>saldo);
+}
+
+int main(){
+    struct cuenta c1;
+    // Definición de mi cuenta c1.
+    strcpy(c1.nombre,"Juan");
+    strcpy(c1.apellido, "Sanchez");
+    c1.identificador=123;
+    c1.saldo=400;
+
+    //Imprimimos los datos de cuenta
+    imprimir_datos(<strong>&c1</strong>);
+    return 0;
+}
+                                    </code></pre>
+                                </p>
+                                <h2>Union,enum y typedef.</h2>
+                                <p>
+                                    Uniones- Son como las struct pero en este caso comparten el mismo sitio en memoria. 
+                                    <pre><code>
+union miUnion_t {
+    int entero; 
+    float flotante;
+};
+int main(){
+    union miUnion_t u;
+    u.entero = 2134344; 
+    u.flotante = 2.54E6; 
+    printf("Entero = %d\n", u.entero);
+    
+    return 0;
+}
+                                    </code></pre>
+                                    Enum - Construye identificadores.
+                                    <pre><code>
+// Declaramos el enumerador.
+enum diasemana{ LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO};
+
+int  main(){
+    enum diasemana dia;
+    dia = LUNES;
+    printf("%d\n", dia); // Sale 0.
+    
+    dia == VIERNES;
+    printf("%d\n",dia );
+    return 0;
+}
+                                    </code></pre>
+                                    Si deseamos que los valores de la enumeración tengan un número en concreto, tendremos que inicializarlo.
+                                    <pre><code>
+// Declaramos el enumerador.
+enum diasemana{ LUNES <strong>= 1</strong> ,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO};
+
+int  main(){
+    enum diasemana dia;
+    dia = LUNES;
+    printf("%d\n", dia); // Sale 0.
+    
+    dia == VIERNES;
+    printf("%d\n",dia );
+    return 0;
+}          
+                                    </code></pre>
+                                    Typedef - Definición de una estructura.
+                                    <pre><code>
+#include &lt;stdio.h&gt; 
+#include &lt;string.h&gt; 
+
+enum tipo_empleado { Analista, Programador };
+
+typedef enum tipo_empleado Tipo;
+typedef int entero;
+
+struct empleado_t {
+    char nombre[20];
+    char apellidos[20];
+    char nif[10];
+    char telefono[10];
+    Tipo tipo;
+};
+
+typedef struct empleado_t Empleado; //'Empleado' -> Palabra reservada.
+
+void imprimir( <strong>Empleado*</strong> empleado ){
+    printf("%s %s \n" empleado->nombre, empleado->apellidos);
+    printf("DNI: %s \n", empleado->nif);
+    printf("Teléfono: %s \n", empleado->telefono);
+    if (empleado->tipo == Analista){
+        printf("Este empleado es un analista. \n");
+    }else{
+        printf("Este empleado es un programador. \n");
+    }
+}
+
+entero main(){
+    Empleado empl; 
+    strcpy(empl.nombre, "Juan", strlen("Juan")+1);
+    strcpy(empl.apellidos, "Alvarez Sanchez", strlen("Alvarez Sanchez")+1);
+    strcpy(empl.nif, "123456789z", strlen("123456789z")+1);
+    strcpy(empl.telefono, "914693545", strlen("914693545")+1);
+    imprimir(&empl);
+    return 0;
+}
+                                    </code></pre>
+                                </p>
+                                <h2>Memoria dinámica.</h2>
+                                <p>
+                                    Guardar espacio en memoria del ordenador antes de usarlo ya que no conocemos el espacio a usar.
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt; // Para usar la memoria dinamica tradicional.
+
+int main(){
+    // Buffer que guarda los datos de tipo float -> 1000 bytes * 4.
+    malloc(4000 * sizeof(float));   // malloc devuelve un puntero de tipo void.
+}
+                                    </code></pre>
+                                    Para poder usarlo debemos crear nuestro propio puntero. 
+                                    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt; // Para usar la memoria dinamica tradicional.
+
+int main(){
+    
+    printf("¿Cuantos elementos desea almacenar?");
+    int longitud;
+    scanf("%d", &longitud);
+
+    float* valores = (float*) malloc(4000 * sizeof(float));
+    if (valores == NULL){
+        printf("No tiene tanta memoria \n");
+        return 1;
+    }
+    int i; 
+    for ( i=0; i < longitud; i++ ){
+        valores[i] = 5.55E5;
+    }
+
+    printf("Todo está correcto. Memoria almacenada. \n");
+    <strong>free(valores);</strong>
+
+    return 0;
+
+}
+                                    </code></pre>
+                                    Los 'malloc' se destruyen hasta la finalizacion del programa o que la destruyamos con 'free(puntero)'.
+                                </p>
+                                <h2>El preprocesador.</h2>
+                                <p>
+                                    Es el primer programa invocado por el compilador y procesa directivas como <code>#include, #define, #if</code>. 
+                                    Estas directivas no son específicas de C.  En realidad pueden ser usadas con cualquier tipo de archivo. <br>
+                                    El preprocesador usa 4 etapas denominadas <i>Fases de traducción.</i> Aunque alguna implementación puede elegir 
+                                    hacer alguna o todas las fases simultáneamente, debe comportarse como si fuesen ejecutadas paso a paso.
+                                    <pre>
+                                        <code>
+#include &lt;stdio.h&gt; -->  Sustituye el contenido del archivo stdio.h del sistema.
+
+#include "MiArchivo.h" --> Extrae el contenido del archivo del usuario.
+
+#pragma once --> para prevenir la doble inclusión, porque si se incluye más de una vez 
+puede causar que se intente declarar varias veces las mismas funciones o tipos de variable, 
+lo que va a generar un error al compilar, esto se intenta prevenir de la siguiente forma:
+
+ifndef# __ARCHIVO_H__
+#define __ARCHIVO_H__--> definir constantes, condiciones.
+// declaración de funciones, etc ... 
+#endif 
+                                        </code>
+                                    </pre>
+                                    "Broma" &rarr; Archivo de preprocesador  &rarr; <a href="Ejercicios Resueltos en Cpp/0-Otros/preprocesador.h" target="_blank" rel="noopener noreferrer">preprocesador.h</a> <br>
+                                    Conclusión de define: <br>
+                                    - Definición junto con su valor indicado.
+                                    <code>#define LIMITE 100 </code> <br>
+                                    - Borrar definición declarada. 
+                                    <code>#undef LIMITE</code> <br>
+                                    - Macro - Sustitución parametrizada. 
+                                    <code>#define AREA_RECTANGULO(x,y){x*y}</code>
+                                </p>
+							</article>
+							
+							<span class="image right img"><img src="../images/logo.jpg" alt="" style="max-width: 100%;"/></span>
+					</div>
+
+					<footer>
+							<p>
+								Posted by: Pauchino <br>
+								HumanComputing 3.0 &copy; <br>
+								Contact info: <a href="mailto:humancomputing3@gmail.com">Enviar Correo.</a>
+							</p>
+					</footer>
+
+			</div>
+	</body>
+</html>

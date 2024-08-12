@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Capítulo 7</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="main.css" />
+		<link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+	</head>
+	<body class="single is-preload">
+    	<div id="wrapper">
+			<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Indice</a></h1>
+					</header>
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">Punteros en C.</a></h2>
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2019-07-26">Agosto, 13, 2019</time>
+										<a href="https://github.com/chunche95" class="author"><span class="name">Chunche95</span><img src="images/avatar.jpg" alt="" /></a>
+									</div>
+                                </header>
+                                <h3>Introducción.</h3>
+                                <p>
+                                    Los punteros en el lenguaje C, son variables que 'apuntan', es decir, que poseen la dirección de las ubicaciones en memoria de otras variables, y por medio de ellos 
+									tendremos un poderoso método de acceso a todas ellas. Quizás este punto es el más conflictivo del lenguaje, ya que muchos programadores 'novatos', lo ven como 
+									un método extraño o al menos desacostumbrado, lo que les produce un cierto rechazo, sin embargo, y en la medida de lo posible, mientras se familiariza con ellos, se 
+									convierten en la herramienta más cómoda y directa para el manejo de variables complejas, argumentos, parámetros, etc. y se empieza a preguntar como es que hizo para 
+									programar sin ellos. La respuesta es que no lo ha hecho, ya que se han usado de forma encubierta, si decir lo que eran. Su declaración es: <br>
+<pre>
+<blockquote>tipo de variable apuntada *nombreDelPuntero; 
+int *pint;  
+double *pfloat; 
+char *letra, *codigo, *caracter;</blockquote>
+</pre>
+									En estas declaraciones sólo decimos al compilador que reserve una posición en memoria para albergar la dirección de una variable, del tipo indicado, la cual será referenciada 
+									con el nombre que hayamos dado al puntero. <br>
+									Obviamente, un puntero debe ser inicializado antes de usarse, y una de las formas es: 
+									<pre>
+										<code>
+int var1; 		/* Declaro (y creo en memoria) una variable entera */
+
+int *pint; 		/* Declaro ( y creo en memoria) un puntero que contendrá 
+				 * la dirección de una variable entera. 
+				 */
+pint = &var1;   /* Escribo en la dirección de memoria donde está el puntero 
+				 * la dirección de la variable entera. 
+				 */
+										</code>
+									</pre>
+									Como habiamos anticipado, "&nombreDeUnaVariable", implica la dirección de la misma. En el contexto del programa el uso es el mismo, esquemáticamente, lo que hemos hecho  se puede 
+									simbolizar de la siguiente manera: <br>
+									<blockquote>
+									&rarr; dónde dentro del recuardo está el contenido de cada variable &rarr; Pint  xxxxxxx   valor contenido por var1 &rarr; Dirección de var1 
+									&rarr; yyyyyy (posición de memoria  ocupada por el puntero)    xxxxxxx (posición de memoria ocupada por la variable)
+									</blockquote>
+									<br>
+									En realidad, como veremos más adelante, en la declaración del puntero, está implicita otra información: <i> cual es el tamaño (en bytes) de la variable apuntada</i>. 
+									El símbolo <strong>&</strong> o dirección, puede aplicarse a variables, funciones, etc, pero no a constantes o expresiones, ya que éstas no tienen una posición de memoria fija. 
+									La operación inversa a la asignación de un puntero, de refenciación del mismo, se puede usar para hallar el valor contenido por la variable apuntada. <br>
+									Así por ejemplo, serán expresiones equivalentesa: 
+									<pre>
+										<code>
+y=var1;
+y=*pint;
+printf("%d",var1);
+printf("%d",*pint);
+										</code>
+									</pre>
+									En estos casos,la expresión "*nombreDelPuntero", implica contenido de la variable apuntada por el mismo. Ejemplo:
+									<pre>
+										<code>
+#include &lt;stdio.h&gt;
+
+main(){
+	char var1; 		/* Variable tipo carácter */
+	char *pchar;		/* Puntero a la variable de tipo char */
+	pc=&var1;		/* Asignamos al puntero la dirección de la variable */
+
+	for(var1='a'; var1&gt;='z'; var1++){
+		printf("%c",*pchar); 	/* Imprimimos el valor de la variable apuntada */
+	}
+	return 0;
+}
+										</code>
+									</pre>
+									Resumiendo, las variables o constantes por refenciación de un puntero, deben coincidir en tipo con la declaración de aquel, la asignación de una constante a un pointer y 
+									no a la variable apuntada por él, es un serio error, ya que debe ser el compilador, el encargado de poner en él el valor de la dirección,  aquel  asó lo declara dando un mensaje 
+									de "conversión de puntero no transportable". Si bien lo compila, ejecutar un programa que ha tenido esta advertencia, es similar a jugar a la ruleta rusa, puede 'colgarse' la máquina 
+									o lo que es peor, destruirse la información de manera involuntaria de un disco, etc. <br>
+									Hay un sólo caso en el que esta asignación de una constante a un puntero es permitida, muchas funciones para indicar que no pueden realizar una acción o que se ha producido un error de 
+									algún tipo, devuelven un puntero llamado <i>"Null Pointer"</i>, lo que significa que no apunta a ningún lado válido, dicho puntero ha sido cargado con la dirección NULL, así la asignación: 
+									pint=NULL; es válida y permite luego operaciones relacionadas del tipo <code>if(pint)</code> ... o <code>if(pint != NULL)</code> para convalidar la validez del resultado devuelto por una función. 
+									Una advertencia: Debemos desde ahora tener en cuenta que los punteros no son enteros, como parecería a primera vista, ya que el número que representa a una posición en memoria, "sí lo es". 
+									Debido al corto alcance de este tipo de variable, algunos compiladores pueden, para apuntar a una variable muy lejana, uasr cualquier otro tipo, con mayor alcance que el antedicho.
+								</p>
+								<h3>Punteros y arrays.</h3>
+								<p>
+									Hay una relación muy cercana entre los punteros y los arrays. Ya vimos previamente que el designador ( o nombre de un array) era equivalente a 
+									la dirección del elemento [0] del mismo. La explicación de esto es ahora sencilla, el nombre de un array, para el compilador C, es un puntero 
+									inicializado con la dirección del primer elemento del array, sin embargo, hay una importante diferencia entre ambos, que haremos notar más adelante.
+									Sintaxis permitida entre punteros:
+									<pre>
+										<code>
+float var1 , conjunto[] = { 9.0 , 8.0 , 7.0 , 6.0 , 5.0 ); 
+float *punt ; 
+punt = conjunto ;    /* equivalente a hacer : punt = &conjunto [0] */ 
+var1 = *punt ; 
+*punt = 25.1;
+										</code>
+									</pre>
+									Es perfectamente válido asignar a un puntero el calor de otro, el resultado de esta operación es cargar en el puntero punt la dirección del elemento [0] 
+									del array conjunto, y posteriormente en la variable var1 el valor del mismo (9.0) y para luego cambiar el valor de dicho primer elemento a 25.1. <br>
+									Veamos cual es la diferencia entre un puntero y el denominador de un array: el primero es una variable, es decir, que puedo asignarlo, incrementarlo, etc. 
+									en cambio el segundo es una constante, que apunta siempre al primer elemento del array con que fue declarado, por lo que su contenido no puede ser variado. 
+									Ejemplo:
+									<pre>
+										<code>
+int conjunto[5] , lista[] = { 5 , 6 , 7 , 8 , 0 ) ; 
+int *apuntador ; apuntador = lista ;      /* correcto */ 
+conjunto = apuntador;    /* ERROR ( se requiere en Lvalue no constante ) */ 
+lista = conjunto ;       /* ERROR  ( idem ) */ 
+apuntador = &conjunto    /* ERROR no se puede aplicar el operador & (dirección) a una constante */
+										</code>
+									</pre>
+									Veamos las distintas modalidades del incremento de un puntero: Incremento o decremento de un puntero.
+									<pre>
+										<code>
+int *pint , arreglo_int[5] ; 
+double *pdou , arreglo_dou[6] ; 
+pint = arreglo_int ;     /* pint apunta a arreglo_int[0] */ 
+pdou = arreglo_dou ;     /* pdou apunta a arreglo_dou[0] */  
+pint += 1 ;              /* pint apunta a arreglo_int[1]  */
+pdou += 1 ;              /* pdou apunta a arreglo_dou[1]  */  
+pint++ ;                 /* pint apunta a arreglo_int[2] */ 
+pdou++ ;                 /* pdou apunta a arreglo_dou[2] */
+										</code>
+									</pre>
+								</p>
+								<h3>Aritmética de punteros.</h3>
+								<p>
+									La aritmética más frecuentemente usada con punteros son las sencillas operaciones de asignación, incremento o decremento y referenciación. Todo otro tipo de aritmética 
+									con ellos está prohibida o es peligrosa o poco transportable. Por ejemplo, no esta permitido, simar,restar,dividir, multiplicar,etc. dos punteros entre sí. Otra operación 
+									permitida es la comparación  de dos punteros, por ejemplo (punt1==punt2) o (punt1&lt;punt2) sin embargo, este tipo de operaciones son potencialmente peligrosas, ya que con 
+									algunos modelos de pointers pueden funcionar correctamente y con otros no.
+								</p>
+								<h3>Punteros y variables dinámicas.</h3>
+								<p>
+									Si no estamos seguros de cuantos datos van a ingresar a nuestro programa, pondremos alguna limitación, suficientemente grande a los efectos de la precisión requerida por el problema,
+									digamos 1000 valores como máximo, debemos definir entonces un array de double capaz de albergar a mil de ellos, por lo que el mismo ocupará del orden de los 10k de memoria. <br>
+									Si definimos este array en el <code>main()</code>, ese espacio de memoria permanecerá ocupado hasta el fin del programa, aunque luego de aplicarle el algoritmo de cálculo ya no lo 
+									necesitemos más, comprometiendo seriamente nuestra disponibilidad de memoria para albergar a otras variables. Una solución sería definirlo en una función llamada por main() que se 
+									ocupará  de llenar el array con los datos, procesarlo y finalmente devolver algún tipo de resultado, borrando con su retorno a la masiva variable de la memoria. <br>
+									Sin embargo, en C, existe una forma más racional de usar nuestros recursos de memoria de manera conservadora. Los programas ejecutables creados con estos compiladores dividen la memoria 
+									disponible en varios segmentos, uno para el código (lenguaje máquina), otro para guardar variables globales, otro para el stack ( a través del cual se pasan argumentos y donde residen las 
+									variables locales) y finalmente, un último segmento llamado memoria de apliamiento o amontonamiento (heap). <br>
+									El heap, es una zona destinada a albergar a las variables dinámicas, es decir, aquellas que crecen (en sentido de ocupación de memoria) y decrecen a lo largo del programa, pudiendose crear 
+									y desaparecer (desalojando la memoria que ocupaban) en cualquier momento de la ejecución.
+								</p>
+								<h3>Punteros a strings.</h3>
+								<p>
+									No hay gran diferencia entre el trato de punteros a arrays, y a strings, ya que estos dos últimos son entidades de la misma clase, sin embargo, analicemos algunas particularidades. Así, como 
+									inicializamos un string con un grupo de caracteres terminales en '\0', podemos asignar al mismo puntero: <br>
+									p="Esto es un string constante";
+									<br>
+									Esta operación no implica haber copiado el texto, sino que a p se le asigno la dirección de memoria donde reside la 'E' del texto. A partit de ello podemos manejar a p como lo hemos hecho hasta ahora. 
+									Ejemplo:
+									<pre>
+										<code>
+#include &lt;stdio.h&gt;
+
+#define texto1 "Hola! ¿Cómo"
+#define texto2 "esta hoy?"
+
+main(){
+	char palabra[20], *p;
+	int i; 
+	p=texto1;
+
+	for(i=0; (palabra[i]=*p++)!='\0'; i++);
+	p=texto2;
+
+	printf("%s", palabra);
+	printf("%s", p);
+
+	return 0;
+}
+										</code>
+<strong>Ejemplo 2:</strong>
+<code>
+#include &lt;stdio.h&gt; 
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+main(){
+	char *p , palabra[20] ;
+
+	p = (char *)malloc(sizeof(char)128) ; 
+	printf("Escriba su nombre : ") ; 
+	scanf("%s" , p ) ; 
+
+	strcpy(palabra , "¿ Como le va " ) ;
+	printf("%s%s" , palabra , p ) ; 
+} 
+</code>
+									</pre>
+								</p>
+
+								<h3>Punteros a estructuras.</h3>
+								<p>
+									Los punteros pueden también servir para el manejo de estructuras, y su alojamiento dinámico, pero tienen además la propiedad de poder 
+									direccionar a los miembros de las mismas utilizando un operador particular, el <code>-&gt;</code>.  <br>
+									Supongamos crear una estrucutra y luego asignar valores a sus miembros, por los métodos ya descritos anteriormente.
+									<pre>
+										<code>
+struct conjunto{
+	int a;
+	double b;
+	char c[5];
+}
+
+stconj;
+stconj.a=10;
+stconj.b=1.15;
+stconj.c[0]='A';
+										</code>
+<strong>Con punteros sería:</strong>
+										<code>
+struct conjunto{
+	int a;
+	double b;
+	char c[5];
+}
+
+*ptrconj;
+ptrconj=(struct conjunto *)malloc(sizeof(struct conjunto));
+ptrconj-&gt;a = 10;
+ptrconj-&gt;b = 1.15;
+ptrconj-&gt;c[0] = 'A';
+
+										</code>
+									</pre>
+									La ventaja del uso de <b>typedef</b>, para ahorrar tediosas repeticiones de texto, y mejorar la legilibilidad de los listados, 
+									podríamos escribir:
+									<pre>
+										<code>
+typedef struct{
+	int a;
+	double b;
+	char c[5];
+}
+conj;
+conj *ptrconj;
+ptrconj=(conj *)malloc(sizeof(conj));
+										</code>
+									</pre>
+								</p>
+								<h3>Punteros y funciones.</h3>
+								<p>
+									La relación entre los punteros y las funcioens, pueden verse en tres casos diferentes, podemos pasarle a una función un puntero como argumento ( por supuesto si su 
+									parámetro es un puntero del mismo tipo), pueden devolver un puntero de cualquier tipo, como ya hemos visto con malloc() y calloc(), y es posible también apuntar a la 
+									dirección de la funcion, en otras palabras, al código en vex de a un dato.
+								</p>
+								<h3>Punteros como parámetros de funciones.</h3>
+								<p>
+									Supongamos que hemos declarado una estructura, se puede pasar a una función como argumento, de la manera que ya vimos anteriormente:
+									<pre>
+										<code>
+struct conjunto{
+	int a;
+	double b;
+	char c[5];
+}
+datos;
+void unaFuncion(struct conjunto datos);
+										</code>
+									</pre>
+									hicimos notar, en su momento, que en este caso la estructura se copiaba en el stack y así era pasada a la función, con el peligro que esto implicaba, si ella era muy masiva, de agotarlo.
+									Otra forma equivalente es usar un puntero a la estructura: 
+									<pre>
+										<code>
+struct conjunto{
+	int a;
+	double b;
+	char c[5];
+}
+*pdatos;
+void unaFuncion(struct conjunto *pdatos);
+										</code>
+									</pre>
+									Con lo que sólo ocupo lugar en el stack para pasarle la dirección de la misma. Luego en la función, como todos los miembros de la estructura son accesibles por medio del puntero, tengo pleno control de la 
+									misma. Un ejemplo de funciones ya usadas que poseen como parámetro a punteros son:
+									<pre>
+										<code>
+scanf(puntero_a_string_de_control , punteros_a_variables) 
+printf(puntero_a_string_de_control , variables )
+										</code>
+									</pre>
+									En ambos vemos que los strings de control son, como no podría ser de otro modo, punteros, es decir, que los podríamos  definir de la función y luego pasarselos a ellas: 
+									<pre>
+									<code>
+p_control="valor: %d";
+printf(p_control,var);										
+									</code>
+									</pre>
+								</p>
+								<h3>Punteros como resultado de una función.</h3>
+								<p>
+									Las funciones que retornan punteros son por lo general aquellas que modifican un argumento, que les ha sido pasado por dirección (por medio de un puntero), devolviendo un puntero a dicho argumento modificado, 
+									o las que reservan lugar en el <a href="http://www.it.uc3m.es/pbasanta/asng/course_notes/ch06s03.html" target="_blank" rel="noopener noreferrer">heap</a> para las variables dinámicas, retornando un puntero a dicho bloque de memoria. 
+									Así podremos declarar funciones del tipo de: 
+									<pre>
+										<code>
+char *funcion1(char * var1);
+double *funcion2(int i, double j, char *k);
+struct item *funcion3(struct stock *puntst);
+										</code>
+									</pre>
+									El retorno de las mismas puede inicializar punteros del mismo tipo al devuelto, o distinto, por medio del uso del casting. Algunas funciones, tales como malloc() y calloc() definen su retorno como punteros a void. <br>
+									<code>void *malloc(int tamano);</code>
+									<br>
+									de esta forma al invocarlas, debemos indicar el tipo de puntero deseado. <br>
+									<code>
+										p=(double *)malloc(64);
+									</code>
+								</p>
+
+							</article>
+					</div>
+
+					<footer>
+							<p>
+								Posted by: Pauchino <br>
+								HumanComputing 3.0 &copy; <br>
+								Contact info: <a href="mailto:humancomputing3@gmail.com">Enviar Correo.</a>
+							</p>
+					</footer>
+
+			</div>
+	</body>
+</html>

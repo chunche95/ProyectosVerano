@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Capítulo 6</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="main.css" />
+		<link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+	</head>
+	<body class="single is-preload">
+    	<div id="wrapper">
+			<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Indice</a></h1>
+					</header>
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">Estructuras de agrupaciones de variables en C.</a></h2>
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2019-07-26">Agosto, 07, 2019</time>
+										<a href="https://github.com/chunche95" class="author"><span class="name">Chunche95</span><img src="images/avatar.jpg" alt="" /></a>
+									</div>
+                                </header>
+                                <h3>Conjunto ordenado de variables (Arrays).</h3>
+								<p>
+                                   Los arreglos o conjutos de datos ordenados (arrays) recolectan variables del mismo tipo, guardandolas en forma secuencial en la misma memoria. 
+                                   La cantidad máxima de variables que puede albergar está sólo limitada por la cantidad de memoria disponible. El tipo de las variables involucradas
+                                   puede ser cualquiera  de los ya vistos, con la única restricción de que todos los componentes de un array deben ser del mismo tipo. <br>
+                                   La declaración de un array se realiza según la siguiente sintaxis: 
+                                   <pre>
+                                       <code>
+tipo de variables nombre[cantidad de elementos];
+                                       </code>
+                                   </pre>
+                                   Por ejemplo: 
+                                   <blockquote>
+                                       <pre>
+                                           <code>
+in var[10];
+char nombre[50];
+float numeros[200];
+long double cantidades[25];
+                                           </code>
+                                       </pre>
+                                   </blockquote>
+                                   Si tomamos el primer caso, estamos declarando un array de 10 unidades enterasm cada una de ellas quedará individualizada por el subíndice que sigue al nombre 
+                                   del mismo es decir: 
+                                   <pre>
+                                       <code>
+var1[0], var1[1], etc hasta var1[9]
+                                       </code>
+                                   </pre>
+                                   Nótese que la cantidad de elementos es 10, pero su numeración va del 0 al 9, y no del 1 al 10. <br>
+                                   En resumen un array de N elementos tiene subíndices válidos entre 0 y N-1. Cualquier otro número usado como subíndice, traerá datos de otras zonas de memoria, cuyo 
+                                   contenido es impredictible. <br>
+                                   Se puede referenciar a cada elemento, en forma individualm tal como se ha hecho con las variables anteriormente, por ejemplo:
+                                   <pre>
+                                       <code>
+var1[5]=40;
+contador=var1[3]+7;
+if(var1[0] &lt;=37){
+    ...
+}
+                                       </code>
+                                   </pre>
+                                   También es posible usar como subíndice expresiones aritméticas, valores enteros retornando por funciones, etc. Así podríamos escribir: 
+                                   <pre>
+                                       <code>
+printf("%d", var1[++i]);
+var1[8]=var1[i+j];
+... 
+int unaFuncion(void);
+var1[0]=var1[unaFuncion()]*10;
+                                       </code>
+                                   </pre>
+                                   Por supuesto, los subíndices resultantes de las operaciones tienen que estar acotados a aquellos para los que el array fue declarado y ser enteros. 
+                                   La inicialización de los array sigue las mismas reglas que vimos para los otros tipos de variables, es decir, si se declaran como globales (afuera del cuerpo de todas las 
+                                   funciones) cada uno de sus elementos será automáticamente inicializado a cero. Si en cambio, su declaración es local a una función, no se realiza ninguna inicialización,
+                                   quedando a cargo del programa cargar los valores de inicio. La inicialización de un array local, puede realizarse en su declaración, dando una lista de valores iniciales: 
+                                   <code>
+                                       int numero[8]={4,7,0,0,45,9,7,1};
+                                   </code>
+                                   Obsérvese que la lista está delimitada por llaves, otra posibilidad, sólo válida cuando se inicializan todos los elementos del array, es decir: 
+                                   <code>
+                                       int numero[]={1,2,3,4,5,6,70,9,7};
+                                   </code>
+                                   donde se obvia la declaración de la cantidad de elementos, ya que está implícita en la lista de valores constantes. También, se puede incializar parcialmente un array, por 
+                                   ejemplo: 
+                                   <code>
+                                       int numero[10]={1,1,1};
+                                   </code>
+                                   en este caso los tres primeros elementos del mismo valdrán 1, y los restantes cero en el caso que la declaración sea global o cualquier valor impredecible en el caso de que sea local.
+                                </p>
+
+                                <h3>Conjunto ordenado de caracteres (Strings)</h3>
+                                <p>
+                                    Los strings son simplemente arrays de caracteres, tal como los cimos hasta ahoram con el agregado de un último elemento constante: el caracter NULL (ASCII = 0,
+                                    simbolizado por la secuencia de escape \0). Este agregado permite a las funciones que procesan a los mismos, determinar facilmente la finalización de los datos. 
+                                    Podemos generar un string, declarando: 
+                                    <blockquote>
+                                        <code>
+                                            char car_str[]={'J','A','G','U','A','R',0};
+                                        </code>
+                                        <code>
+                                            char car_str[]={'J','A','G','U','A','R','\0'};
+                                        </code>
+                                    </blockquote>
+                                    Ambas maneras son equivalentes, sin embargo, hay, en el lenguaje C,una forma más compacta de declararlos.
+                                    <blockquote>
+                                        <code>
+                                            char car_str[]="JAGUAR";
+                                        </code>
+                                        <code>
+                                            char car_str[7]="JAGUAR";
+                                        </code> 
+                                    </blockquote>
+                                        <br>
+                                        <strong><i>ERROR al declarar el string.</i></strong>
+                                        <br>
+                                        <code>
+                                            int text[]= "line1 \n line2 \n";    /* ERROR */
+                                        </code>
+                                        &rarr;
+                                        <code>
+                                            unsigned char text[]="line1 \n line2 \n";
+                                        </code>
+                                   <br>
+                                   Simplemente en la declaración del mismo se encierran los caracteres que lo componen entre comillas. Obsérvese que en la segunda declaración, se ha explicitado ( no es necesario), 
+                                   la cantidad de elementos que tiene el string,  y es uno más que la cantidad de caracteres con que se le inicializa, para dejar lugar al NULL. 
+                                   Todas estas declaraciones agregan automáticamente el NULL como último elemento del array. Un caso interesante es el de la tercer línea (comentada como ERROR), con el fin de poder 
+                                   albergar el caracter "\n" &rarr; 20 (ASCII 179) se interesanteo asignar el string a un array de enteros, esto no es permitido por el compilador, que lo rechaza como asignación inválida. 
+                                   La razón de ello se cerá más adelante cuando analicemos punteros, ya que el string constante usado como rvalue es un puntero a char, y no a int. La solución más común para este caso es, 
+                                   declarar el array como unsigned char, con lo que llevamos el alcance de sus elementos a 255. Si tuvieramos el caso de tener que albergar en un string el caracter EOF(-1) y al mismo tiempo 
+                                   caracteres con ASCII mayor que 127, se podría definir el array como int, pero su inicialización se tendrá que hacer obligatoriamente usando llaves, como vimos anteriormente. <br>
+                                   Se deduce entonces, de lo antedicho  que un string sigue siendo un array de caracteres, con la salvedad del agregado de un terminador, por lo que las propiedades que veremos a continuación, 
+                                   se aplicaran indistintamente a ambos. 
+                                </p>
+                                <h3>Array y strings como argumentos de funciones.</h3>
+                                <p>
+                                    Los arrays, como todos los otros tipos de variables, pueden ser pasados como argumentos a las funciones. Veamos esquemáticamente como sería su sintaxis.
+                                    <blockquote>
+                                        <pre>
+                                        <code>
+double funcion1(float numeros[10], char palabra[]); /* Línea 1 */
+... 
+main()                                              /* línea 2 */
+{
+    float numeros[10]={1.1,2.2,3.3};                /* línea 3 */
+    char palabra[]="Lenguaje C";                    /* línea 4 */
+    double c;                                       /* línea 5 */
+    ... 
+    c=funcion1(numeros,palabra);                    /* línea 6 */
+    ... 
+}
+
+double funcion1(float numeros[10], char palabra[])  /* línea 7 */
+{
+    ...
+}
+                                        </code>
+                                        </pre>
+                                    </blockquote>
+                                    Es necesario analizar con mucho detenimiento,este ejemplo. <br>
+                                    En la primera línea declaramos el prototipo de funcion1() que recibe como argumento dos arrays, uno de 10 elementos del tipo float, y otro de caracteres de longitud 
+                                    indeterminada. En el primer caso la función necesitará saber de alguuna manera cual es la longitud del array numérico recibido, mientras que el segundo, no hace falta, 
+                                    ya que la funcion puede ser construída para que, por sí misma, detecte la finalización del string por la presencia del caracter NULL. Se podría generalizar más el 
+                                    programa declarando: <br>
+                                    <code>
+                                        double funcion1(double numeros[], int longitud_array, char palabra[]);
+                                    </code>
+                                    <br>
+                                    en donde, en la variable longitud_array se enviaría la cantidad de elementos de numero[]. En la tercer línea se declara el array numérico, inicializandose sólo los tres primeros 
+                                    elementos, y en la cuarta línea se declara el string. En la séptima línea, se da la definición  de la función, de acurdo al prototipo escrito anteriormente. En la sexta línea, el 
+                                    llamado a la funcion, vemos que los argumentos pasados sólo tienen el nombre de ambos arrays. Esta es la diferencia más importante entre este tipo de estructura de datos y las variables 
+                                    simples vistas anteriormente, ya que los arrays son pasados a las funciones por dirección y no por valor. <br>
+                                    A fin de evitar errores muy comúnes, en los primeros intentos de programación en C. Otra característica importante de los arrays es que, su nombre o dirección del primer elemento, es 
+                                    una constante y no una variable. El nombre de los arrays implican para el compilador el lugar de memoria donde empieza la estructura de datos por lo que, intentar cambiar su valor es 
+                                    tomado como un error, así si escribieramos, por ejemplo: <br>
+                                    <blockquote>
+                                        char titulo[]="Primer título"; <br>
+                                        ... <br> 
+                                        titulo="subtitulo"; <br>
+                                    </blockquote>
+                                    La primera sentencia es correcta, ya que estamos inicializando al string, pero la segunda produciría un error del tipo <b><i>LVALUE REQUERIDO</i></b>, es decir que el compilador espera 
+                                    ver, del lado izquierdo de una expresión, a una variable y en cambio se ha encontrado con una constante <b>titulo</b>, que almacena "Primer título", esto al compilador le suena similar 
+                                    a una expresión de la clase: <code>124=j</code> y se niega rotundamente a compilarla.
+                                </p>
+                                <h3>Arrays multidimensionales.</h3>
+                                <p>
+                                    Las estructuras de datos del tipo array pueden tener más de una dimensión, es bastante común el uso de arrays "planos" o matriciales de dos dimensiones, 
+                                    por ejemplo: 
+                                    
+                                    <blockquote>
+                                    <pre>
+                                        <code>
+int matriz[numero total de filas][numero total de columnas];
+<cite><strong>Si declaramos:</strong></cite>
+int matriz[3][4];
+                                        </code>
+                                    </pre>
+                                    </blockquote>
+                                    Esquemáticamente la disposición "espacial" de los elementos sería: 
+                                    <blockquote>
+                                        <pre>
+columnas:       0       1       2       3
+filas:     0  [0][0]   [0][1]   [0][2]   [0][3]  matriz[0][]  
+
+           1  [1][0]   [1][1]   [1][2]   [1][3]  matriz[1][]  
+
+           2  [2][0]   [2][1]   [2][2]   [2][3]  matriz[2][]  
+                                        </pre>
+                                    </blockquote>
+                                    Por supuesto, aunque menos usados, se pueden generar arrays de cualquier número de dimensiones. <br>
+                                    Para inicializar un array multidimensional, se escribe:
+                                    <pre>
+                                        <code>
+char diaDeLaSemana[7][8]={
+    "lunes","martes",",miércoles",
+    "jueves","viernes","sábado",
+    "domingo"
+};                                                
+                                        </code>
+                                    </pre>
+                                </p>
+                                <h3>Declaración de estructuras.</h3>
+                                <p>
+                                    Así como los arrays son organizaciones secuenciales de variables simples, de un mismo tipo cualquiera dado, resulta necesario en multiples aplicaciones, agrupar variables de 
+                                    tipo cualquiera dado, resulta necesario en múltiples aplicaciones, agrupar variables de distintos tipos, en una solaentidad. Este sería el caso, si quisieramos generar la 
+                                    variable "chunche personal", en ella tendríamos que incluir variables del tipo strong, para el nombre, apellido, nombre de la calle donde vive, etc, enteros para la edad, número 
+                                    de código postal, float o double para salario, ... Existe en C en tipo de variable compuesta, para manejar esta situación tíìca de las Bases de Datos, llamada estructura. No hay 
+                                    limitaciones en el tipo ni cantidad de variables que pueda contener una estructura, mientras si máquina posea memoria suficiente como para alojarla, con una sola salvedad: una 
+                                    estructura no puede contenerse a sí misma como miembro. <br>
+                                    Para usarlas, se deben seguir dos pasos. Hay que, primero declarar la estructura en sí, esto es, darle un nombre y describir a sus miembros, para finalmente declarar a una o más 
+                                    variables, del tipo de la estructura antedicha, veamos un ejemplo: 
+                                    <pre>
+                                        <code>
+struct chunche{
+    int edad;
+    char nombre[50];
+    float sueldo;
+};
+struct chunche chunche_mantenimiento, chunche_desarrollo;
+                                        </code>
+                                    </pre>
+                                    En la primer sentencia se crea un tipo de estructura, mediante el declarador <code>struct</code>, luego se le da un nombre <code>chunche</code> y finalmente, entre llaves se declaran 
+                                    cada uno de sus miembros, pudiendo estos ser de cualquier tipo de variable, incluyendo a los arrays o atra estructura. La única restricción es que no haya dos miembros con el mismo 
+                                    nombre, aunque si pueden coincidir con el nombre de otra variable simple o de un miembro de otra estructura, declaradas en otro lugar del programa. Esta sentencia es solo una declaración, 
+                                    es decir, que no asigna lugar en la memoria para la estructura, solo le avisa al compilador como tendrá que manejar a dicha memoria para alojar variables del tipo struct chunche. <br>
+                                    En la segunda sentencia, se definen dos variables del tipo  de la estructura anterior y se reserva memoria para ambas, las dos sentencias pueden combinarse en una sola, dando la 
+                                    definición a continuación de la declaración.
+                                </p>
+                                <h3>Reglas para el uso de estructuras.</h3>
+                                <p>
+                                    Lo primero que debemos estudair es el método para dirigirnos a un miembro particular de una estructura. Para ello, existe un operador que 
+                                    relaciona al nombre de ella con el de un miembro, este operador se representa con el punto (.), así se podrá referenciar a cada uno de los 
+                                    miembros como variables individuales, con las particularidades que les otorgan sus propias declaraciones, internas a la estructura. 
+                                    La sintaxis para realizar esta referencia es: <br>
+                                    <code>
+                                        nombreDeLaEstructura.nombreDelMiembro
+                                    </code>
+                                    <br>
+                                    Así podremos escribir por ejemplo: 
+                                    <pre><code>
+struct posicionDeEjes{
+    float ejeX;
+    float ejeY;
+    float ejeZ;
+} finRecta, inicioRecta={1.0,2.0,3.0};
+finRecta.ejeX=10.0;
+finRecta.ejeY=50.0;
+finRecta.ejeZ=90.0;
+if(finRecta.ejeX == inicioRecta.ejex)
+...
+                                    </code></pre>
+                                    Es muy importante recalcar que, dos estructuras, aunque sean del mismo tipo, no pueden ser asignadas o comparadas la una con la otra, de forma 
+                                    directa, sino asignando o comparandolas miembro a miembro. Esto se ve claramente explicitado en las líneas siguientes, basadas en las 
+                                    declaraciones anteriores:
+                                    <br>
+                                    <pre><code>
+                                        
+finRecta = inicioRecta;               /* Error */
+if (finRecta &lt;=inicioRecta);          /* Error */
+
+finRecta.ejeX = inicioRecta.ejeX;     /* Forma correcta de asignar */
+finRecta.ejeY = inicioRecta.ejeY;     /* una estructura a otra.    */
+finRecta.ejeZ = inicioRecta.ejeZ;
+
+/* Forma correcta de comparar una estructura con otra. */
+if((finRecta.ejeX &lt= inicioRecta.ejeX) && (finRecta.ejeY &lt;= inicioRecta.ejeY) 
+&& (finRecta.ejeZ &lt= inicioRecta.ejeZ))
+                                    </code></pre>
+                                    Las estructuras pueden anidarse, es decir, que una o más de ellas pueden ser miembros de otra. Las estructuras también pueden ser pasadas a las funciones 
+                                    como parámetros y ser retornadas por éstas, como resultado.
+                                </p>
+                                <h3>Array de estructuras.</h3>
+                                <p>
+                                    Cuando hablamos de array dijimos que podían agruparse, para formarlos, cualquier tipo de variables, esto es extensible a las estructuras y podemos entonces agruparlas 
+                                    ordenadamente, como elementos de un array. Ejemplo:
+                                    <pre>
+                                        <code>
+typedef struct{
+    char material[50];
+    int existencias;
+    double costoUnitario;
+}Item;
+Item stock[100];
+                                        </code>
+                                    </pre>
+                                    Hemos definido un array de 100 elementos, donde cada uno de ellos es una estructura de tipo Item compuesta por tres variables, un int, un double y un string o array de 
+                                    50 caracteres. <br>
+                                    Los arrays de estrucuturas pueden inicializarse de la manera habitual, así en una definición de stock, podríamos haber escrito: 
+                                    <pre>
+                                        <code>
+Item stock1[100]={
+    "tornillos" , 120 , 15 ,
+    "tuercas"   , 200 , 0.90 ,
+    "arandelas" , 90  , 0.10 
+};
+Item stock2[]={
+    { 'i','t','e','m','1','\0' } , 10 , 1.5 ,
+    { 'i','t','e','m','2','\0' } , 20 , 1.0 ,
+    { 'i','t','e','m','3','\0' } , 60 , 2.5 ,                         
+    { 'i','t','e','m','4','\0' } , 40 , 4.6 ,                         
+    { 'i','t','e','m','5','\0' } , 10 , 1.2 ,                        
+};
+                                        </code>
+                                    </pre>
+                                    Para evitar la saturación del stack por el pasaje o retorno desde funciones, es necesario conocer el tamaño o espacio en bytes ocupados por ella. 
+                                    Podemos aplicar el operador <code>sizeof</code>, de la siguiente manera:
+                                    <pre>
+                                        <code>
+longDeDatos = sizeof(stock1);
+longDeDatos = sizeof(Item);
+cantDeDatos = sizeof(stock1) / sizeof(Item);               
+                                        </code>
+                                    </pre>
+                                    Con la primera calculamos el tamaño necesario de memoria para albergar todos los datos, en la segunda la longitud de un solo elemento (record) y por supuesto dividiendo ambas,
+                                    se obtiene la cantidad de records. 
+                                </p>
+                                <h3>Uniones.</h3>
+                                <p>
+                                    Las uniones son a primera vista, entidades muy similares a las estructuras, estan formadas por un número cualquiera de miembros, al igual que aquellas, pero en este caso no existen 
+                                    simultaneamente todos los miembros, y solo uno de ellos tendrá un valor válido. <br>
+                                    Supongamos por caso, que queremos guardar datos para un stock de materiales, pero los miembros pueden ser identificados, en un caso con el número de artículo (entero) y en otro por 
+                                    su nombre (string de 10 letras). No tendría sentido definir dos variables, un int y un string, para cada artículo, ya que voy a usar una modalidad o la otra, pero no las dos a la vez.
+                                    Las uniones resuelven esta caso, ya que si declaro una que contegna dos miembros, un entero y un string, sólo se reservará lugar para el mayor de ellos, en este caso el string, de tal 
+                                    forma que si asigno un valor a éste, se llenará ese lugar de la memoria con los caracteres correspondientes, pero si en cambio asigno un valor al miembro declarado como int, éste se 
+                                    guardará en los dos primeros bytes del mismo lugar de memoria. Por supuesto, en una unión, sólo uno de los miembros tendrá entonces un valor correcto.
+                                </p>
+							</article>
+					</div>
+
+					<footer>
+							<p>
+								Posted by: Pauchino <br>
+								HumanComputing 3.0 &copy; <br>
+								Contact info: <a href="mailto:humancomputing3@gmail.com">Enviar Correo.</a>
+							</p>
+					</footer>
+
+			</div>
+	</body>
+</html>

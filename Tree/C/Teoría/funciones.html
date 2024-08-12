@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Capítulo 5</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="main.css" />
+		<link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+	</head>
+	<body class="single is-preload">
+    	<div id="wrapper">
+			<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Indice</a></h1>
+					</header>
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">Funciones en C.</a></h2>
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2019-07-26">Julio, 26, 2019</time>
+										<a href="https://github.com/chunche95" class="author"><span class="name">Chunche95</span><img src="images/avatar.jpg" alt="" /></a>
+									</div>
+								</header>
+								<p>
+									La forma más razonable de encarar el desarrollo de un programa compilado es aplicar lo que se  ha dado en llamar "programación Top-Down". 
+									Esto implica que, luego de conocer cual es la meta a alcanzar, se dubdivide estas en otras varias tareas concurrentes, por ejemplo: <br>
+									<code>
+										Leer un teclado, procesar datos, mostrar los resultados. 
+									</code> <br>
+									<code>
+										Luego a estas se les vuelve a dividir en otras menores: 
+									</code><br>
+									Y así se continúa hasta llegar a tener un gran conjunto de pequeñas y simples tareas, del tipo de 'leer una tecla' o 'imprimir un carácter'. 
+									Luego sólo resta abocarse a resolver cada una de ellas por separado. <br>
+									De esta forma el programador sólo se tendra que ver con ciminutas piezas de programa, de pocas lineas, cuya escritura y corrección posterior 
+									es una tarea simple. Tal es el criterio con que está estructurado el lenguaje C, donde una de sus herramientas fundamentales son las funciones.
+									Todo compilador comercial trae una gran cantidad de librerias de toda índole, matemáticas, de entrada-salida, de manejo de textos, de manejo de 
+									gráficos, etc. que solucionan ma layor parte de los problemas básicos de programación. <br>
+									Sin emabrgo, será inevitable que en algúm moemnto tenga que crear mis propias funciones, las reglas para ello son las  que desarrollamos en este 
+									capítulo. <br>
+									Convencionalmente en C los nombres de las funciones se escriben en minúsculas y siguen las reglas dadas anteriormente para los de las variables, 
+									pero deben ser seguidos, para diferenciarlas de aquellas por un par de paréntesis. Dentro de estos paréntesis estarán  ubicados los datos 
+									que se les pasan a las funciones. Está permitido pasarles uno, ninguno o una lista de ellos separados por comas, por ejemplo: <br>
+									<code>
+										pow10(a) 
+									</code><br>
+									<code>
+										getch() 
+									</code><br>
+									<code>
+										strcmp(s1,s2)
+									</code><br>
+									Un concepto sumamente importante es que los argumentos que se les envían a las funciones son los valores de las variables y no las varaibles mismas. 
+									En otras palabras, cuando se invoca una función de la forma <code>pow10(a)</code> en realidad se está copiando en el 'stack' de la memoria el valor 
+									que tiene en ese momento la variable a, la función podrá usar este valor para sus cálculos, pero está garantizado que los mismos no afectan en absoluto 
+									a la variable en sí misma. <br> 
+									Como veremos más adelante, es posible que una función modifique a una variable, pero para ello, será necesario comunicarle la dirección en memoria de dicha 
+									variable. Las funciones pueden o no devolver valores al programa invocante. Hay funciones que tan sólo realizan acciones, como por ejemplo <code>clrscr()</code>
+									que borra la pantalla de video, y por lo tanto no retornan ningun dato de interés, en cambio otras afectan cálsulos, devolviendo los resultados de los mismos. 
+									La invocación a estos dos tipos de funciones difiere algo, por ejemplo escribiremos: <br>
+									<pre>
+										<code>
+clrscr();
+c= getch();
+										</code>
+									</pre>
+									donde en el segundo caso el valor retornado por la función  se asigna a la variable c, obviamente ésta deberá tener el tipo correcto para alojarla.
+								</p>
+								
+								<h3>Declaración de funciones.</h3>
+								<p>
+									Antes de escribir una función es necesario informarle al Compilador los tamaños de los valores que se le enviarán en el stack y el tamaño de los valores que ella retorna 
+									al programa invocante. <br>
+									Estas informaciones están contenidas en la declaración de prototipo de la función. Formalmente dicha declaración queda dada por:
+									<code>tipo del valor de retorno  nombre_de_la_funcion(lista de tipos de parámetros)</code> <br>
+									Ejemplo:
+									<pre>
+										<code>
+float miFuncion(int i, double j);
+double otraFuncion(void);
+otraFuncionMas(long p);
+void ultimaFuncion(long double z, char y, int x, unsigned long w);
+										</code>
+									</pre>
+									El primer término del prototipo da, como hemos visto, el tipo del dato retornado por la función, en caso de obviarse el mismo se toma, por omisión, el tipo int. Sin embargo, 
+									aunque la función devuelva este tipo de dato, para evitar malas interpretaciones es conveniente explicitarlo. <br>
+									Ya que el 'default' del tipo de retorno es el int, debemos indicar cuando la función no retorna nada, esto se realiza por medio de la palabra <code>void</code>,sin valor.
+									De la misma manera se actúa, cuando no se le enviarán argumentos. <br>
+									Más adelante se profundizará sobre el tema de los argumentos y sus características. La declaración debe anteceder en el programa a la definición de la función, es normal, por 
+									razones de legibilidad de la documentación, encontrar todas las declaraciones de las funciones usadas en el programa, en el header del mismo, junto con los include de archivos 
+									*.h que tienen los prototipos de las funciones de Librería. <br>
+									Si una o más de nuestras funciones es usada habitualmente, podemos disponer su prototipo en un archivo de texto, e incluirlo las veces que necesitemos, según se vio en capítulos 
+									previos.
+								</p>
+
+								<h3>Definición de las funciones.</h3>
+								<p>
+									La definición de una función puede ubicarse en cualquier lugar del programa, con sólo dos restricciones, 
+									debe hallarse luego de dar su prototiopo, y no pede estar dentro de la definición de otra función (<b>include main()</b>). Es decir, que a diferencia 
+									de Pacal, en C las definiciones ni pueden anidarse. <br>
+									<cite>
+										<b>Nota.</b> No debe confundirse definición con llamada; una función puede llamar a tantas otras como desee. <br>
+										La definición debe comenzar con un encabezamiento, que debe coincidir totalmente con el prototipo declarado para la misma, y a continuación del mismo,
+										encerradas por llaves se escribirán las sentencias que la componen; por ejemplo: <br>
+										<pre>
+											<code>
+#include &lt; stdio.h &gt;
+float miFuncion(int i, double j); /* <b>Declaración</b>, termianda en ';' */
+main(){
+	float k;
+	int p;
+	double z;
+	... 
+	k= miFuncion(p,z); /* Llamada a la funcion */
+	... 
+} /* Fin de la funcion main() */
+
+float miFuncion(int i, double j) /* <b>Definición</b>, sin ';' */
+{
+	float n;
+	... 
+	printf("%d",i); 
+	... 
+	return(2*n);
+}
+											</code>
+										</pre>
+									</cite>
+									Pasamos ahora a describir más profundamente las distintas modalidades que adoptan las funciones.
+								</p>
+
+								<h3>Funciones que no retornan valor ni reciben parámetros.</h3>
+								<p>
+									Veamos como ejemplo la implementación de una función "pausa". 
+									<pre>
+										<code>
+#include &lt; stdio.h &gt;
+void pausa(void);
+main(){
+	int contador=1;
+	printf("Valor del contador dentro del while \n");
+	while(contador&lt;=10);
+	if(contador == 5){
+		pausa();
+		printf("%d\n",contador++);
+	}
+	pausa();
+	printf("Valor del contador al salir del while: %d", contador);
+	return 0;
+}
+
+void pausa(void){
+	char c;
+	printf("\n Pulse enter para continuar. \n");
+	while((c=getchar()!='\n'));
+}
+										</code>
+									</pre>
+
+									En cada llamada, el programa transfiere el comando a la función, ejecutandose, hasta que esta finalice, 
+									su propia secuencia de instrucciones. Al finalizar la función esta retorna el comando al programa principal, 
+									continuandose la ejecución por la instrucción que sucede al llamado. Si bien las funciones aceptan cualquier nombre,
+									es una buena practica de programación nombrarlas con términos que represente su operación. Se puede salir prematuramente 
+									de una función void mediante el uso de <code>return</code>, sin que este sea seguido de ningun parámetro o valor.
+								</p>
+
+								<h3>Funciones que retornan valor.</h3>
+								<p>
+									Analicemos por medio de un ejemplo dichas funciones.
+									<pre>
+										<code>
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+#define FALSO 0
+#define CIERTO 1 
+
+int finalizar(void);
+int leer_char(void);
+
+main(){
+	int i=0;
+	int fin=FALSO;
+	printf("Ejemplo de funciones que retornan valor.\n");
+	while(fin=FALSO){
+		i++;
+		printf("i==%d \n",i);
+		fin=finalizar();
+	}
+
+	printf("\n \n Fin del programa. \n");
+	return 0;
+}
+
+int finalizar(void){
+	int c;
+	printf("¿Otro número?(S/N)");
+	do{
+		c=leer_char();
+	}while((c!='N') && (c!='S'));
+	return (c=='N');
+}
+
+int leer_char(void){
+	int j;
+	if((j=getch()) &gt;&gt;='A' && j&lt;&lt;='Z'){
+		return(j+('a'-'A'));
+	}else{
+		return j;
+	}
+}
+										</code>
+									</pre>
+									<b>Nota:</b>Preste atención a que en la función <code>finalizar()</code> se ha usado un do-while. 
+									En la función <code>leer_char</code> se ha usado dos returns, de tal forma que ella sale por uno u otro. 
+									De esta manera si luego de finalizado el else se hubiera agregado otra sentencia, esta jamás sería ejecutada. <br>
+									En el siguiente ejemplo veremos funciones que retornan datos de tipo distindo al int. Debemos presentar antes, 
+									otra dunción muy común de entrada de datos: <code>scanf()</code>, que nos permitirá leer datos completos enviados 
+									desde el teclado, su expresión formal es algo similar a la del <code>printf()</code>. <br>
+									<blockquote>
+										<pre>
+											<code>
+scanf("secuencia de control", direccion de la variable);
+											</code>
+										</pre>
+									</blockquote>
+									Donde la secuencia de control se indicará que tipo de variable se espera leer, por ejemplo:
+									<ul>
+										<li>%d - Leer entero decimal (int).</li>
+										<li>%o - Leer octal.</li>
+										<li>%x - Leer hexadecimal.</li>
+										<li>%c - Leer caracter.</li>
+										<li>%f - Leer float</li>
+										<li>%ld - Leer long int.</li>
+										<li>%lf - Leer long float.</li>
+										<li>%Lf - Leer un long double.</li>
+									</ul>
+
+									Encaremos ahora un programa que nos presente primero, un menú para seleccionar la conversión de ºC a ºF o de centímetros 
+									a pulgadas, hecha nuestra elección, nos pregunte el valor a convertir y posteriormente nos de el resultado. <br>
+									Si suponemos que las funciones que usaremos en el programa serán frecuentemente usadas, podemos poner las declaraciones 
+									de las mismas, así como todas las constantes que use, en un archivo de texto, por ejemplo <code><i>convers.h</i></code>. Este podrá ser 
+									guardado en el subdirectorio donde están todos los demás <i>include</i> o dejado en el directorio activo, en el cual se 
+									compila el programa fuente de nuestro problema.Para variar, supongamos que esto último es nuestro caso. <br>
+									<blockquote>
+										<pre>
+											<code>
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+#define FALSO 0
+#define CIERTO 1
+#define CENT_POR_INCH 25.4
+
+void pausa(void);
+void mostrarMenu(void);
+int seleccion(void);
+void cmApulgadas(void);
+void centAfahr(void);
+double leerValor(void);
+											</code>
+										</pre>
+									</blockquote>
+									Vemos que un header puede incluir llamadas a otros (en este caso conio.h). Hemos puesto también la definición de todas las constantes 
+									que usaran las funciones abajo declaradas. De dichas declaraciones vemos que usaremos funciones que no retornan nada, otra que retorna 
+									un entero y otra que devuelve un double. <br>
+									Veamos ahora el desarrollo del programa en sí. Observe que la invocación a <code>conversion.h </code>se hace con comillas, por haber
+									decidido dejarlo en el directorio activo. 
+									<pre>
+										<code>
+#include &lt;stdio.h&gt; 
+
+#include "convers.h"
+main(){
+	int fin=FALSO;
+	while(!fin){
+		mostrarMenu();
+		switch(seleccion()){
+			case 1:
+				cmApulgadas();
+				break;
+			case 2:
+				centAfahr();
+				break;
+			case 3: 
+				fin=CIERTO;
+				break;
+			default:
+				printf("\n Error, la opción seleccionada no es válida. \a\a\n");
+				pausa();
+		}
+	}
+	return 0;
+}
+
+/* Funciones */
+
+void pausa(void){
+	char c=0;
+	printf("\n\n Pulse ENTER para continuar. \n");
+	while((c=getch() != '\r'));
+}
+
+void mostrarMenu(void){
+	clrscr();
+	printf("\n Menú.  \n");
+	printf(" 1. Centímetros a pulgadas. \n");
+	printf(" 2. Celsius a Farhenheit. \n");
+	printf(" 3. Salir. \n");
+}
+
+int seleccion(void){
+	printf("\n Seleccione una de las opciones del menú: ");
+	return(getch()-'0');
+}
+
+void cmApulgadas(void){
+	double centimetros; /* Guarda el valor pasado por leerValor() */
+	double pulgadas;    /* Guarda el valor calculado */
+	printf("\n Escriba los centímetros a convertir: ");
+	centimetros=leerValor();
+	pulgadas=centimetros*CENT_POR_INCH;
+	printf("%3f Centimetros= %3f pulgadas. \n",centimetros,pulgadas);
+	pausa();
+}
+
+void centAfahr(void){
+	double centigrados; /* Guardará el valor pasado por leerValor() */
+	double Farhenheit;  /* Guardará el valor calculado. */
+
+	printf("\n Escriba los grados Centigrados a convertir: ");
+	centigrados=leerValor();
+	Farhenheit=(((centigrados*9.0)/5.0)+32);
+	printf("%3f grados centigrados = $3f Farhenheit", centigrados, Farhenheit);
+	pausa();
+}
+
+double leerValor(void){
+	double valor; /* Variable para guardar lo leido del teclado */
+	scanf("%1f", &valor);
+	return valor;
+}
+										</code>
+									</pre>
+								</p>
+
+								<h3>Ambito de las variables (Scope).</h3>
+								<p>
+									<h4>Variables globales.</h4>
+									<p>
+										Hasta ahora hemos diferenciado a las variables según su tipo (int, char, double, etc.), el cual se refería,
+										en última instancia, a la cantidad de bytes que la conformaban. Veremos ahora que hay otra diferenciación de 
+										las mismas, de acuerdo a la clase de memoria en la que residen. <br>
+										Si definimos una variable AFUERA de cualquier función (incluyendo esto a main()), estaremos frente a lo denominado 
+										<i>variable global</i>. Este tipo de variable será ubicada en el segmento de datos de la memoria utilizada por el 
+										programa, y existirá todo el tiempo que esté ejecutandose este. <br>
+										Este tipo de variables son automáticamente iniciazadas a cero cuando el programa comienza a ejecutarse. <br>
+										Son accesibles a todas las funciones que estan declaradas en el mismo, por lo que cualquiera de ellas podrá actuar
+										sobre el valor de las mismas. Por ejemplo:
+										<pre>
+											<code>
+#include &lt;stdio.h&gt;
+double una_funcion(void);
+double variable_global ;
+main() {
+	double i ;
+	printf("%f", variable_global );       /* se imprimirá 0 */
+	i = una_funcion() ;
+	printf("%f", i );                     /* se imprimirá 1 */ 
+	printf("%f", variable_global );       /* se imprimirá 1 */ 
+	variable_global += 1 ; 
+	printf("%f", variable_global );       /* se imprimirá 2 */ 
+	return 0 ; 
+} 
+
+double una_funcion(void) { 
+	return( variable_global  += 1) ; 
+} 
+											</code>
+										</pre>
+									</p>
+									
+									<h4>Variables locales</h4>
+									<p>
+										A diferencia de las anteriores, las variables definidas dentro de una función, son denominadas variables locales a la misma, 
+										a veces se les llama también como automaticas, ya que son creadas y destruídas automáticamente por la llamada y el retorno de 
+										una función, respectivamente. <br>
+										Estas variables se ubican en la pila dinámica (stack) de memoria, destinandose un espacio en la misma  cuando se las define dentro 
+										de una función, y borrándose cuando la misma devuelve el control del programa, a quein la haya invocado. <br>
+										Este método permite que, aunque se haya definido un gran número de variables en un programa, estas no ocupen memoria simultaneamente
+										en el tiempo, y solo vayan incrementando el stack cuando se les necesita, para luego, una vex usadas desaparecer, dejando al stack 
+										en su estado original. <br>
+										El identificador o nombre que se le haya dado a una variable es solo relevante entonces, para la función que la haya definido, 
+										pudiendo existir  entonces variables que tengan el mismo nombre, pero definidas en funciones distintas, sin que haya peligro de confusión. 
+										La ubicación de estas variables locales, se crea en el momento de correr el programa, por lo que no poseen una dirección prefijada, esto 
+										impide que el compilador las pueda inicializar previamente. recuerdese entonces que, si no se les inicializa expresamente en el momento de 
+										su definición, su valor será indeterminado.
+									</p>
+									
+									<h4>Variables locales estáticas.</h4>
+									<p>
+										Las variables locales vistas hasta ahora, ancen y mueren con cada llamada y finalización de una función, sin embargo, muchas veces sería útil 
+										que mantuvieran su valor, entre una y otra llamada a la función sin por ello perder su ámbito de existencia, es decir, seguir siendo locales sólo 
+										a la función que las defina. En el siguiente ejemplo veremos que esto se consigue definiendo a la variable con el prefacio <code>static</code>.
+									</p>
+
+									<h4>Variables de registro.</h4>
+									<p>
+										Otra posibilidad de almacenamiento de las variables locales es, que en vez de ser mantenidas en posiciones de la memoria de la computadora, se guarden 
+										en registros internos del Microprocesador que conforma la CPU de la misma. <br>
+										De esta manera el acceso a ellas es mucho más directo y rápido, aumentando la velocidad de ejecución del programa. Se suelen usar registros para almacenar 
+										a los contadores de los for,while, etc. <br>
+										Lamentablemente, en este caso no se puede imponer al compilador, este tipo de variables, ya que no tenemos control sobre los registros libres en un momento 
+										dado del programa, por lo tanto se sugiere, que de ser posiblem ubique la variable del modo descrito. El prefacio en éste caso será: <code>register int var_reg;</code>
+										<br>
+										Hay que racalcar que esto es solo válido para variables locales, siendo imposible definir en un registro a una global. Por otra parte las variables de registro no son 
+										accesibles por dirección.
+									</p>
+
+									<h4>Variables externas.</h4>
+									<p>
+										Al definir una variable, como lo hemos estado haciendo hasta ahora, indicamos al compilador que reserve para la misma una determinada cantidad de memoria, 
+										sea en el segmento de memoria de datos, si es gloabal o en el stack, si es local, pero debido a que en C es normal la compilación por separado de pequeños módulos,
+										que componen el programa completo, piede darse el caso que una función escrita en un archivo dado, deba usar una variable global definida en otro archivo. Bastará 
+										para poder hacerlo, que se ldeclare especificado que es externa a dicho moçódulo, lo que implica que está definida en otro lado. Supongamos que nuestro programa está 
+										compuesto por sólo dos módulos: <b>mod_principal.c</b> y <b>mod_secundario.c</b> los cuales se compilarán y enlazarán juntos, por medio del compilador y el linker.
+									</p>
+
+									<h4>Argumentos y parametros de las funciones.</h4>
+									<p>
+										Supongamos que en un determinado programa debemos calcular repetidamente el valor medio de dos variables, una solución razonable sería crear una función que realice dicho 
+										cálculo, y llamarla cada vez que se necesite. Para ello será necesario, en cada llamada, pasarle los valores de las variables para que calcule su valor medio. Esto se define 
+										en la declaración de la función especificando, no solo su valor de retorno sino también el tipo de argumentos que recibe: <br>
+										<code>souble valor_medio(double x, double y);</code> 
+										<br>
+										de esta declaración vemos que la función <code>valor_medio</code> recibe dos argumentos, x e y, del tipo double y devuelve un resultado de ese mismo tipo. Cuando definamos 
+										a la función en sí, deberemos incluir parámetros para que alberguen los valores recibidos, así escribiremos: <br>
+										<code>
+											double valor_medio(double x, double y){
+												return ((x+y)/2.0)
+											}
+										</code>
+										<br>
+										<strong>Nota:</strong> No es necesario que los nombres de los parámetros coincidan don los declarados previamente, es decir, que hubiera sido equivalente escribir 
+										<i>double valor_medio(double a, double b)</i>etc, sin embargo, es una buena práctica mantenerlos igual. En realidad en la declaración de la función, no es necesario incluir el 
+										nombre de los parámetros a fin de hacer más legible el programa. <br>
+										Aquí estamos utilizando la sintaxis moderna del lenguaje C, pudiendose encontrar en versiones arcaicas, definiciones equivalentes como:
+										<blockquote>
+											<pre>
+double valor_medio()  o  double valor_medio(double, double) 
+double x;   double x; 
+double y;   double y; 
+{           {
+...         ... 	
+}           }	                             </pre>
+										</blockquote>
+									</p>
+								</p>
+
+							</article>
+					</div>
+
+					<footer>
+							<p>
+								Posted by: Pauchino <br>
+								HumanComputing 3.0 &copy; <br>
+								Contact info: <a href="mailto:humancomputing3@gmail.com">Enviar Correo.</a>
+							</p>
+					</footer>
+
+			</div>
+	</body>
+</html>

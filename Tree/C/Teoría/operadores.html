@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Capítulo 3</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+</head>
+<body class="single is-preload">
+    <div id="wrapper">
+        <!-- Header -->
+                <header id="header">
+                    <h1><a href="index.html">Indice</a></h1>
+                </header>
+            <!-- Main -->
+                <div id="main">
+                    <!-- Post -->
+                    <article class="post">
+                        <header>
+                            <div class="title">
+                                <h2><a href="#">Operadores.</a></h2>
+                                <p></p>
+                            </div>
+                            <div class="meta">
+                                <time class="published" datetime="2019-07-23">Julio, 23, 2019</time>
+                                <a href="https://github.com/chunche95" class="author"><span class="name">Chunche95</span><img src="images/avatar.jpg" alt="" /></a>
+                            </div>
+                        </header>
+                        <p>
+                            Si analizamos la sentencia siguiente:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    var1= var2+var3;
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Estamos diciéndole al programa, por medio del operador +, que compute la suma del valor de dos variables, y una vez
+                            realizado ésto asigne el resultado a otra variable <i>var1</i>. <br>
+                            Esta última operación (asignación) se indica mediante otro operador, el signo "=". 
+                            <hr>
+                            El lenguaje C tiene una amplia variedad de operadores, y todos ellos caen dentro de 6 categorías:
+                            <ul>
+                                <li>Aritméticos</li>
+                                <li>Relacionales</li>
+                                <li>Lógicos</li>
+                                <li>Incremento</li>
+                                <li>Decremento</li>
+                                <li>Manejo de bits y asignación</li>
+                            </ul>
+                            Todos ellos se irán describiendo en los párrafos siguientes.
+                        </p>
+                        <h4>Operadores Aritméticos</h4>
+                        <p>
+                            Tal como era de esperarse los operadores aritméticos, mostrados en la tabla 4, comprenden las cuatro operaciones básicas: 
+                            suma,resta,multiplicación y división, con un agregado, el módulo.
+                            <table id="tabla4">
+                                <tr>
+                                    <td>Símbolo</td>
+                                    <td>Descripción</td>
+                                    <td>Ejemplo</td>
+                                    <td>Orden de evaluación</td>
+                                </tr>
+                                <tr>
+                                    <td>+</td>
+                                    <td>Suma</td>
+                                    <td>a+b</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>-</td>
+                                    <td>Resta</td>
+                                    <td>a-b</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>*</td>
+                                    <td>Multiplicación</td>
+                                    <td>a*b</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>/</td>
+                                    <td>División</td>
+                                    <td>a/b</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>%</td>
+                                    <td>Módulo</td>
+                                    <td>a%b</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>-</td>
+                                    <td>Signo</td>
+                                    <td>-a</td>
+                                    <td>2</td>
+                                </tr>
+                            </table>
+                            El operador módulo se usa para calcular el resto del cociente entre dos números enteros y NO puede
+                            ser aplicado a varaibles del tipo float o double. <br>
+                            Si bien la precedencia (orden en el que son ejecutados los operadores) se analizarán más adelante, 
+                            en este capítulo, podemos adelantar algo sobre el orden en el que se realizan las operaciones aritméticas.
+                            <br>
+                            En la <a href="#tabla4">Tabla 4</a>, la última columna, se da el orden de evaluación de un operador dado. 
+                            Cuanto más bajo sea dicho número mayor será su prioridad de ejecución. Si en una operación existen varios 
+                            operadores, primero se evaluarán los de multiplicación, división y módulo y luego los de suma y resta. <br>
+                            La precedencia de los tres primeros es la misma, por lo que si hay varios de ellos, se comenzará a evaluar a 
+                            aquel que quede más a la izquieda. Lo mismo ocurre con la suma y la resta. <br> <br>
+                            Para evitar errores en los cálculos  se pueden usar paréntesis, sin limitación de anidamieno, los que fuerzan 
+                            a realizar primero las operaciones incluidas en ellos. Los paréntesis no disminuyen la velocidad a la que se 
+                            ejecuta el programa sino que tan sólo obligan al compilador a realizar las operaciones en un orden dado, por 
+                            lo que es una buena costumbre utilizarlos ampliamente. <br>
+                            Los paréntesis tienen un orden de precendecia 0, es decir, que antes que nada se evalúa lo que ellos  encierran. 
+                            Se puede observar que no existen operadores de potenciación, radicación, logaritmicos, etc, ya que en C todas 
+                            estas operaciones ( y muchas otras) se realizan por medio de llamadas a Funciones. <br>
+                            El último de los operadores aritméticos es el de <b>signo</b>. No debe confundirse con el de resta, ya que este
+                            es un operador unitario que opera sobre una única variable cambiando el signo de su contenido numérico. Obviamente 
+                            no existe el operador '+' unitario, ya que su operación será dejar el signo de la variable, lo que se consigue 
+                            simplemente por omisión del signo.
+                        </p>
+                        <h4>Operadores relacionales.</h4>
+                        <p>
+                            Todas las operaciones relacionales dan sólo dos posibles resultados: VERDADERO o FALSO. En el lenguaje C, Falso queda 
+                            representado por un valor entero nulo (cero) y Verdadero por cualquier número distinto de cero. En la tabla 5 se encuentra
+                            la descripción de los mismos.
+                            <table>
+                                <tr>
+                                    <td>SIMBOLO</td>
+                                    <td>DESCRIPCIÓN</td>
+                                    <td>EJEMPLO</td>
+                                    <td>ORDEN DE EVALUACIÓN</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;</td>
+                                    <td>menor que</td>
+                                    <td>(a &lt; b)</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>&gt;</td>
+                                    <td>mayor que</td>
+                                    <td>(a &gt; b)</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>&le;</td>
+                                    <td>menor o igual que</td>
+                                    <td>(a &le; b)</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>&ge;</td>
+                                    <td>mayor o igual que</td>
+                                    <td>(a &ge; b)</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>==</td>
+                                    <td>igual que</td>
+                                    <td>(a == b)</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>!=</td>
+                                    <td>distinto de</td>
+                                    <td>(a != b)</td>
+                                    <td>6</td>
+                                </tr>
+                            </table>
+                            Uno de los errores más comúnes es confundir el operador relacional '==' con el de asignación
+                            '='. La expresión 'a=b' copia el valor de b en a, mientras que 'a==b' retorna cero, si 'a' es 
+                            distinto de 'b' o un número distinto de cero si son iguales. <br>
+                            Los operadores relacionales tiene menor precedencia que los aritméticos, de forma que:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a &lt; b + c 
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Se interpreta como: 
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a &lt; ( b + c )
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Pero es recomendable el uso de los paréntesis a fin de aumentar la legitibilidad del texto. <br>
+                            Cuando se comparan dos variables tipo char el resultado de la operación dependerá de la 
+                            comparación de los valores ASCII de los caracteres contenidos en ellas. Así el carácter 'a' (ASCII 97)
+                            será mayor que el A (ASCII 65) o que el 9 (ASCII 57).
+                        </p>
+
+                        <h4>Operadores lógicos.</h4>
+                        <p>
+                            Hay tres operadores que se usan para la conectividad lógica, descritas en la tabla 6:
+                            <table>
+                                <tr>
+                                    <td>SÍMBOLO</td>
+                                    <td>DESCRIPCIÓN</td>
+                                    <td>EJEMLO</td>
+                                    <td>ORDEN DE EVALUACIÓN</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &&
+                                    </td>
+                                    <td>
+                                        Y (AND)
+                                    </td>
+                                    <td>
+                                        (a &lt; b) && (c &gt; d)
+                                    </td>
+                                    <td>
+                                        10
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ||
+                                    </td>
+                                    <td>
+                                        O (OR)
+                                    </td>
+                                    <td>
+                                        (a &lt; b) || (c &gt; d)
+                                    </td>
+                                    <td>
+                                        11
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        !
+                                    </td>
+                                    <td>
+                                        NEGACIÓN (NOT)
+                                    </td>
+                                    <td>
+                                        !(a &lt; b)
+                                    </td>
+                                    <td>
+                                        1
+                                    </td>
+                                </tr>
+                            </table>
+                        Los resultados  de las operaciones lógicas siempre adoptan los valores CIERTO o FALSO. br
+                        La evaluación de las operaciones lógicas se realiza de izquierda a derecha y se interrumpe 
+                        cuando se ha asegurado el resultado. <br>
+                        El operador NEGACIÓN invierte el sentido lógico de las operaciones, así será:
+                        <blockquote>
+                            <pre>
+                                <code>
+            !( a &gt; b ) equivale a ( a &lt; b )
+            !( a == b ) equivale a  ( a != b )
+            etc.
+                                </code>
+                            </pre>
+                        </blockquote>
+                        En algunas operaciones suele usárse de una manera que se presta a confusión, por ejemplo: 
+                        <blockquote>
+                            <code>
+                                (!i)
+                            </code>
+                        </blockquote>
+                        donde i es un entero. Esto dará un resultado CIERTO si 'i' tiene un valor 0 y un resultado FALSO 
+                        si 'i' es distinto de cero.
+                        </p>
+                        <h4>Operadores de incremento y decremento.</h4>
+                        <p>
+                            Los operadores de incremento y decremento son sólo dos y están descritos en la tabla 7:
+                            <table>
+                                <tr>
+                                    <td>SÍMBOLO</td>
+                                    <td>DESCRIPCIÓN</td>
+                                    <td>EJMEPLO</td>
+                                    <td>ORDEN DE EVALUACIÓN</td>
+                                </tr>
+                                <tr>
+                                    <td>++</td>
+                                    <td>Incremento</td>
+                                    <td>++i o i++</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>Decremento</td>
+                                    <td>--i o i--</td>
+                                    <td>1</td>
+                                </tr>
+                            </table>
+                            Para visualizar rápidamente la función de los operadores antedichos, digamos que las sentencias: 
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a = a+1;
+                    a++;
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Tiene una acción idéntica, de la misma forma que:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a = a-1;
+                    a--;
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Son absolutamente equivalentes, en la maoria de los casos la ubicación de los operadores de incremento 
+                            o decremento indica CUANDO se realiza la operación. Ejemplo: 
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    int = 1, j,k;
+                    j = i++;
+                    k = ++i;
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            En estos casos 'j' es igualado al valor de 'i' y posteriormente a la asignación de i es incrementado por lo 
+                            que j será igual a 1 e i igual a 2. <br>
+                            Luego de ejecutada la sentencia. En la siguiente instrucción i se incrementa antes de efectuarse la asignación
+                            tomando el valor de 3, él que luego es copiado en k.
+                        </p>
+                        <h4>Operaciones de asignación.</h4>
+                        <p>
+                            En principio puede resultar algo con poca utilidad , gastar papel en describir al operador igual a (=), sin embargo,
+                            es necesario remarcar ciertas características del mismo. <br>
+                            Anteriormente, definimos a una asignación como la copia del resultado de una expresión (rvalue) sobre otra (lvalue),
+                            esto implica que dicho lvalue debe tener lugar (es decir poseer una posición de memoria) para alojar dicho valor. 
+                            Es por tanto válido escribir:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a = 17;
+                                    </code>
+                    pero NO:
+                                    <code>
+                    17 = a ; 
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Ya que la constante numérica 17 no posee una ubicación de memoria donde alojar al valor de 'a'. <br>
+                            Aunque parezca un poco extraño al principio las asignaciones, al igual que las otras operaciones, dan un resultado 
+                            qu puede asignarse a su vez a otra expresión. 
+                            De la misma forma <i>( a + b )</i> es evaluada y su resultado puede copiarlo en otra variable: 
+                            <i> c = (a + b);</i> una asignación <i>(a=b)</i> da como resultado el valor de b, por lo que es lícito escribir:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    c = ( a = b )
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Debido a que las asignaciones se evalúan de derecha a izquierda, los paréntesis son superfluos, y podrá escribirse entonces:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    c=a=b=17;
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Con lo que las tres variables resultarán iguales al valor de la constante. <br>
+                            El hecho de que estas operaciones se realicen de derecha a izquierda también permite realizar instrucciones del tipo:
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a+=17;
+                    a=a+17;                                        
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Significando esto que al valor que tenia anteriormente 'a', se le suma la constante y luego se copia el resultado en la variable.
+                            <br>
+                            Como este último tipo de operaciones es por demás común, existe en C un pseudocódigo, con el fin  de abreviarlas. <br>
+                            Así una operación aritmética o de bit cualquiera ( simboliza por OP). 
+                            <blockquote>
+                                <pre>
+                                    <code>
+                    a = (a) OP (b); 
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            puede escribirse en forma abreviada como: <i>a OP= b;</i> <br>
+                            Por ejemplo:
+                            <blockquote>
+                                <pre>
+                                    <code>
+            a += b; &rarr; a = a + b;
+            a -= b; &rarr; a = a - b;
+            a *= b; &rarr; a = a * b;
+            a /= b; &rarr; a = a / b;
+            a %= b; &rarr; a = a % b;
+                                    </code>
+                                </pre>
+                            </blockquote>
+                            Los operadores de asignación están resumidos en la tabla 8.
+                            <table>
+                                <tr>
+                                    <td>SÍMBOLO</td>
+                                    <td>DESCRIPCIÓN</td>
+                                    <td>EJEMPLO</td>
+                                    <td>ORDEN DE EVALUACIÓN</td>
+                                </tr>
+                                <tr>
+                                    <td>=</td>
+                                    <td>igual a</td>
+                                    <td>a = b</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>op=</td>
+                                    <td>pseudocódigo</td>
+                                    <td>a+=b</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>=?:</td>
+                                    <td>asignación condicional</td>
+                                    <td>a = (c &gt; b)?d:e</td>
+                                    <td>12</td>
+                                </tr>
+                            </table>
+                            Vemos de la tabla anterior que aparece otro operador denominado asignación condicional. 
+                            El significado del mismo es el siguiente: <br>
+                            <blockquote>
+                                <code>
+                                    rvalue 1 ó 2. Si aquella es cierta sera lvalue=rvalue 1 y si diera falso, lvalue=
+                                    rvalue 2.
+                                </code>
+                            </blockquote>
+                            Por ejemplo, si quisiéramos asignar a 'c' el menor de los valores a o b, bastará con escribir:
+                            <blockquote>
+                                <code>
+                                    c = ( a &lt; b )?a:b;
+                                </code>
+                            </blockquote>
+                        </p>
+                        <h4>
+                            Operadores de manejo de bits.
+                        </h4>
+                        <p>
+                            Estos operadores muestran una de las armas más potentes del lengiaje C, la de poder manipular 
+                            internamente, es decir, bit a bit, las variables. <br>
+                            Debemos anticipar que estos operadores sólo se aplican a variables de tipo char, short, int y long. 
+                            No pueden ser usados con float o double. <br>
+                            Sabemos que los computadores guardan los datos organizados en forma digital, en bytesm formado por 
+                            números binarios de 8 bits, mientras que los short e int se forman con dos bytes ( 16 bits) y los long 
+                            por cuatro bytes ( 32 bits). Para el manejo de los bits tenemos:
+                            <table>
+                                <tr>
+                                    <td>SÍMBOLO</td>
+                                    <td>DESCRIPCIÓN</td>
+                                    <td>EJEMPLO</td>
+                                    <td>ORDEN DE EVALUACIÓN</td>
+                                </tr>
+                                <tr>
+                                    <td>&</td>
+                                    <td>Y o AND (bit a bit)</td>
+                                    <td> a & b </td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>|</td>
+                                    <td>O u OR inclusiva</td>
+                                    <td>a|b</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>^</td>
+                                    <td>O u OR exclusiva</td>
+                                    <td>a^b</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;&lt;</td>
+                                    <td>Rotación a la izquierda.</td>
+                                    <td>a&lt;&lt;b</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>&gt;&gt;</td>
+                                    <td>Rotación a la derecha</td>
+                                    <td>a&gt;&gt;b</td>
+                                    <td>4</td>
+                                <tr>
+                                    <td>~</td>
+                                    <td>Complemento a uno </td>
+                                    <td>~a</td>
+                                    <td>1</td>
+                                </tr>
+                                </tr>
+                            </table>
+                        </p>
+                    </article>
+                </div> 
+                
+        <!-- Footer -->
+        <section id="footer">
+                <ul class="icons">
+                    <li><a href="fab fa-twitter" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+                    <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+                    <li>
+                        <i class="fab fa-twitter-square"></i>
+                    </li>
+                </ul>
+        </section>
+  
+
+    <footer>
+        <p>
+            Posted by: Pauchino <br>
+            HumanComputing 3.0 &copy; <br>
+            Contact info: <a href="mailto:humancomputing3@gmail.com">Enviar Correo.</a>
+        </p>
+    </footer>
+
+</div>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <script src="js/breakpoints.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>
