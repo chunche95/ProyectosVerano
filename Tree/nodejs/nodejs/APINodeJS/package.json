@@ -1,0 +1,15 @@
+{
+  "name": "apinodejs",
+  "version": "1.0.0",
+  "description": "Need for containerizing? Containerization allows a developer to create, deploy and manage application much faster and securely across environments from a DevOps engineer point of view Dockers helps in maintaining applications and monitoring much easier and re-structuring of the architecture is more efficient when the application is containerized and with the emergence of serverless architecture and Kubernetes skilled Docker operators are in demand than never before, So in this Blog we are going to see about how to containerize an API and run it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
