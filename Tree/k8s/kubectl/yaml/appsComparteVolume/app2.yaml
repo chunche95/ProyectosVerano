@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app2
+spec:
+  containers:
+  - name: app2-container
+    image: busybox
+    command: ["sh", "-c", "mkdir -p /mnt/shared && echo 'Hello from app2' > /mnt/shared/index.html"]
+    volumeMounts:
+    - mountPath: /mnt/shared
+      name: shared-volume
+  volumes:
+  - name: shared-volume
+    persistentVolumeClaim:
+      claimName: shared-pvc

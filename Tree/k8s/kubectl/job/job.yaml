@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: node-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: node
+        image: node:latest
+        command: ["node", "-v"]
+      restartPolicy: Never
