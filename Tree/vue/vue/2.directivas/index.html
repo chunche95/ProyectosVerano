@@ -10,15 +10,20 @@
 </head>
 <body>
 
-    <div id="main">
+    <div v-bind:class="[activeClass, errorClass]" id="main">
         <h1 v-if="conectado">
             Estas conectado
         </h1>
         <h1 v-else>
             No estas conectado
-        </h1>
+        </h1>                
         <hr>
-        <img v-show="Visible" src="https://austingil.com/wp-content/uploads/Vue-Blog-Cover.svg" alt="Vue Image" srcset="">
+        <p v-if="edad">
+            Eres mayor de edad
+        </p>
+        <p v-else="edadMin">
+            No cumples con la edad mínima
+        </p>
         <hr>
         <input v-model="message" placeholder="Escribe un mensaje">
     </div>
