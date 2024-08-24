@@ -7,7 +7,12 @@ const app = new Vue({
     edad: 2, 
     nombre: 'John Doe',
     apellidos: 'Doe, John',
-    edadMin: 17
-
+    edadMin: 17,
+    items: ['Juan', 'John', 'Doe', 'Alice'],
+    listaPrecios: [
+      { nombre: 'Producto 1', precio: 100 },
+      { nombre: 'Producto 2', precio: 200 },
+      { nombre: 'Producto 3', precio: 300 }
+    ]
   }  
 })

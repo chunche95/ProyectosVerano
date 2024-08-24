@@ -26,6 +26,25 @@
         </p>
         <hr>
         <input v-model="message" placeholder="Escribe un mensaje">
+        <hr>
+
+
+        <!-- Renderizado de listas -->
+         <p> {{items}} </p>
+         <ul v-if="items.length">
+            <li v-for="item in items" :key="item.id">
+                {{ item }}
+            </li>
+         </ul>
+         <p v-else>No hay items</p>
+
+
+         <ul v-if="items.length">
+            <li v-for="objeto in listaPrecios">
+                {{ objeto.nombre }} - {{ objeto.precio }}
+            </li>
+         </ul>
+
     </div>
     
     
