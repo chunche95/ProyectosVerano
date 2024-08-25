@@ -17,32 +17,47 @@
         <hr>
         <h3>Agregar tarea</h3>
     
-        <input v-model="nuevaTarea" type="text" placeholder="Escribe una nueva tarea">
-        <button v-on:click="agregarTarea">Agregar</button>        
+        <input v-model="nuevaTarea" type="text" placeholder="Escribe una nueva tarea">        
+        <button v-on:click="agregarTarea">Agregar</button>  
+
+        <table>
+            <tr>
+                <td class="attention-text"> Lista encontrada: </td>
+                <td v-if="tareas.length" class="font-size-large">
+                    <ol class="font-size-medium">
+                        <li v-for="item in tareas">
+                            {{ item.titulo }}
+                        </li>
+                    </ol>            
+                </td>
+            </tr>
+            <tr>
+                <td class="attention-text">
+                    Tareas completadas.                    
+                </td>
+                <td>
+                    <ol class="strikethrough">
+                        <li v-for="item in tareasCompletadas">
+                            {{ item.titulo }}
+                        </li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td class="attention-text">
+                    Tareas pendientes.
+                </td>
+                <td>
+                    <ol class="important-text">
+                        <li v-for="item in tareasPendientes">
+                            {{ item.titulo }}
+                        </li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+            
         
-        <blockquote>
-            <h3>Lista encontrada:</h3>
-            <p v-if="tareas.length" class="font-size-large">
-                <ol class="font-size-medium">
-                    <li v-for="item in tareas">
-                        {{ item.titulo }}
-                    </li>
-                </ol>            
-            </p>
-        
-            <h3>Tareas completadas.</h3>
-            <ol class="strikethrough">
-                <li v-for="item in tareasCompletadas">
-                    {{ item.titulo }}
-                </li>
-            </ol>
-            <h3>Tareas pendientes.</h3>
-            <ol>
-                <li v-for="item in tareasPendientes">
-                    {{ item.titulo }}
-                </li>
-            </ol>
-        </blockquote>
         <hr>
         <div>
             <p>

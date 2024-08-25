@@ -1,5 +1,9 @@
 /* Estilos básicos de texto */
 
+table, th, td {
+    border:0px solid black;
+    padding: 5px 20px;
+}
 /* Subrayado */
 .underline {
     text-decoration: underline;
@@ -48,7 +52,7 @@
   .strikethrough {
     text-decoration: line-through;
     font-size: 18px;
-    color: blueviolet;
+    color: rgb(15, 181, 18);
   }
   
   /* Cursiva */
