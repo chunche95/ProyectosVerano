@@ -21,6 +21,18 @@
         <button v-on:click="agregarTarea">Agregar</button>        
         
         <blockquote>
+
+            <tr>
+                <td class="attention-text"> Filtrado: </td>
+                <td v-if="tareas.length" class="font-size-large">
+                    <ol class="font-size-small">
+                        <li v-for="item in filtrarTitulo">
+                            {{ item.titulo }}
+                        </li>
+                    </ol>            
+                </td>
+            </tr>
+
             <h3>Lista encontrada:</h3>
             <p v-if="tareas.length" class="font-size-large">
                 <ol class="font-size-medium">

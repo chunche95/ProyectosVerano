@@ -47,6 +47,15 @@ const app = new Vue({
         appVersion,
         platform,
       }
+    }, 
+    filtrarTitulo() 
+    {
+
+      if (this.nuevaTarea === null || this.nuevaTarea === '' )
+        return null;
+
+      return this.tareas.filter(tarea => tarea.titulo.toLowerCase().includes(this.nuevaTarea.toLowerCase()));
+      
     }
   }
 })
