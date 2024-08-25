@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>   
+    <div id="main" class="bg-txt">
+        <h1 v-if="conectado">
+            Lista de Tareas 
+        </h1>
+        
+        <hr>
+        <h3>Agregar tarea</h3>
+    
+        <input v-model="nuevaTarea" type="text" placeholder="Escribe una nueva tarea">
+        <button v-on:click="agregarTarea">Agregar</button>        
+        
+        <blockquote>
+            <h3>Lista encontrada:</h3>
+            <p v-if="tareas.length" class="font-size-large">
+                <ol class="font-size-medium">
+                    <li v-for="item in tareas">
+                        {{ item.titulo }}
+                    </li>
+                </ol>            
+            </p>
+        
+            <h3>Tareas completadas.</h3>
+            <ol class="strikethrough">
+                <li v-for="item in tareasCompletadas">
+                    {{ item.titulo }}
+                </li>
+            </ol>
+            <h3>Tareas pendientes.</h3>
+            <ol>
+                <li v-for="item in tareasPendientes">
+                    {{ item.titulo }}
+                </li>
+            </ol>
+        </blockquote>
+        <hr>
+        <div>
+            <p>
+                Info dispositivo conectado: {{ mostrarNombre }}
+            </p>
+        </div>
+    </div>
+    
+    
+    
+<!--    SCRIPST     -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="codigo.js"></script>
+</body>
+</html>
+
+
