@@ -10,53 +10,16 @@
 </head>
 <body>   
     <div>
-        <div>
-            <h1 v-if="conectado">
-                Lista de Tareas 
+        <div id="main">
+            <h1>
+                {{ titulo }}
             </h1>
         </div>
-        
-        <p id="main" class="">            
-            <p>Agregar tarea</p>
-            <input v-model="nuevaTarea" type="text" placeholder="Escribe una nueva tarea">
-            <button v-on:click="agregarTarea">Agregar</button>        
-            
-            <blockquote>
-                <tr>
-                    <td class="attention-text"> Filtrado: </td>
-                    <td v-if="tareas.length" class="font-size-large">
-                        <ol class="font-size-small">
-                            <li v-for="item in filtrarTitulo">
-                                {{ item.titulo }}
-                            </li>
-                        </ol>            
-                    </td>
-                </tr>
-    
-                <p>Lista encontrada:</p>
-                <p v-if="tareas.length" class="font-size-large">
-                    <ol class="font-size-medium">
-                        <li v-for="item in tareas">
-                            {{ item.titulo }}
-                        </li>
-                    </ol>            
-                </p>            
-            </blockquote>
-            <hr>
-            <div>
-                <p>
-                    Info dispositivo conectado: {{ mostrarNombre }}
-                </p>
-            </div>
-        </p>        
-        <p>
-            <div id="main2" class="">
-                <p>Llamada a instancia 2 de Vue</p>        
-                <p>
-                    {{ instancia2.mensaje }}
-                </p>
-            </div>
-        </p>
+    </div>
+    <div id="main2">
+        <h1>
+            {{ titulo }}
+        </h1>
     </div>
     
     
