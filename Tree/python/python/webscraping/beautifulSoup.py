@@ -65,3 +65,7 @@ print(elements)
 # ID selector
 elementid = soup.select_one('#national-museum-of-carthage')
 print(elementid.text)
+
+# selector
+element = soup.select('[href]')
+print(element)
