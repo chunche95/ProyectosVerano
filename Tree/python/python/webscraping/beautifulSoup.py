@@ -54,3 +54,14 @@ it1 = soup.find('li')
 print(it1)
 print(it1.parent.text)
 print(it1.parent)
+
+element = soup.select_one("ul li p")
+print(element.text)
+
+# Class selector
+elements = soup.select_one('.museum-list')
+print(elements)
+
+# ID selector
+elementid = soup.select_one('#national-museum-of-carthage')
+print(elementid.text)
