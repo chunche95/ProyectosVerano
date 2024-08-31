@@ -19,25 +19,25 @@ for i in range(1,20):
 
     for tvname in tv: 
         name = tvname.find('a', class_='sc-2fa46f1d-1 gXFxam sc-3edc7bb3-0 ejgCbV')
-        print(name.text if name else '' )
+        # print(name.text if name else '' )
 
         price = tvname.find('span', class_ = 'sc-3f2da4f5-0 iOrmAX sc-dd1a61d2-2 efAprc')
-        print(price.text if price else '')
+        # print(price.text if price else '')
 
         description = tvname.find('div', class_ = 'sc-ec2e8e14-0 epARLk')
-        print(description.text if description else '')
+        # print(description.text if description else '')
 
         rating = tvname.find('div', class_ = 'sc-caf3c2f0-0 ittdzo')
-        print(rating.text if rating else '')
+        # print(rating.text if rating else '')
 
-        print("-----------------")
+        # print("-----------------")
 
         scrap.append({'Name':name, 'Precio':price, 'Descripcion':description, 'Opiniones': rating})
 
-final_file = 'scrap.csv'
+final_file = 'scrapTV.csv'
 with open(final_file,  mode='w', newline='', encoding='utf-8' ) as file:
-    writer = csv.DirectWriter(file, fieldnames = [key for key in scrap[0].keys()])
-    writer.writerheader()
+    writer = csv.DictWriter(file, fieldnames = [key for key in scrap[0].keys()])
+    writer.writeheader()
     writer.writerows(scrap)
 
 print("Data has been save")
