@@ -12,6 +12,6 @@ spec:
   templates:
   - name: hello-world
     container:
-      image: busybox
-      command: [echo]
+      image: alpine:3.7
+      command: ["echo"]
       args: ["hello world"]
