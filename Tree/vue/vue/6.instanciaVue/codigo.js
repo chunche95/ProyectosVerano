@@ -3,17 +3,20 @@ const app = new Vue(
     el:'#main',
     data: 
     {
-      titulo:'Hello, Vue.js!'      
-    }
-  }
-)
-
-const app2 = new Vue(
-  {
-    el:'#main2',
-    data: 
+      tareas:[
+        { nombre: 'Tarea 1', completada: false },
+        { nombre: 'Tarea 2', completada: true },
+        { nombre: 'Tarea 3', completada: false },
+        { nombre: 'Tarea 4', completada: false },
+        { nombre: 'Tarea 5', completada: false }
+      ]
+    },
+    methods: 
     {
-      titulo:app.titulo
+      completarTarea(tarea)
+      {
+        tarea.completado = !tarea.completado
+      }
     }
   }
 )

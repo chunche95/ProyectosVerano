@@ -12,15 +12,22 @@
     <div>
         <div id="main">
             <h1>
-                {{ titulo }}
+                Listado de tareas
             </h1>
+            <p>
+                <ul>
+                    <li @click:="completarTarea(tarea)"
+                        v-for="objeto in tareas">
+                        {{ objeto.nombre }}
+                    </li>
+                </ul>
+            </p>
         </div>
-    </div>
-    <div id="main2">
-        <h1>
-            {{ titulo }}
-        </h1>
-    </div>
+        <hr>5
+        <pre>
+             {{ tareas }}
+        </pre>
+    </div>   
     
     
 <!--    SCRIPST     -->
